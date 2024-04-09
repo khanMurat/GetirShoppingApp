@@ -14,13 +14,14 @@ class BaseViewController: UIViewController {
     
     //MARK: - Lifecycle
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.backgroundColor = .white
+        navBarStyle()
     }
     
-
+    
     func showAlert(title:String,message:String) {
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -32,6 +33,21 @@ class BaseViewController: UIViewController {
         DispatchQueue.main.async {
             self.present(alert, animated: true)
         }
+    }
+    
+    func navBarStyle(){
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = .purple
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        
+        self.title = "Product List"
     }
     
 }

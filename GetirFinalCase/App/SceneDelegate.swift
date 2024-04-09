@@ -22,10 +22,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let splash = SplashRouter.createModule()
         
-        window.rootViewController = splash
-        
         window.makeKeyAndVisible()
         
+        window.rootViewController = splash
+
         self.window = window
     }
 

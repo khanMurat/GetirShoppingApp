@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 enum SplashRoutes {
     case homeView
@@ -43,7 +43,10 @@ extension SplashRouter : SplashRouterProtocol {
         
         switch route {
         case .homeView:
-            print("GO HOME VİEW")
+            guard let window = viewController?.view.window else { return }
+//            let homeVC = HomeRouter.createModule()
+            let navigationController = UINavigationController(rootViewController: BaseViewController())
+            window.rootViewController = navigationController
         }
     }
 }
