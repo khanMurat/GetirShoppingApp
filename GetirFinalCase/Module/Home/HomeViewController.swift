@@ -19,14 +19,37 @@ final class HomeViewController: BaseViewController {
     
     //MARK: - Properties
     
+    var presenter : HomePresenterProtocol!
+    
+    let collectionView = UICollectionView()
     
     //MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        presenter.viewdidLoad()
     }
     
+    private func createLayout() -> UICollectionViewCompositionalLayout {
+        // item
+        
+        let item = CompositionalLayout.createItem(width: .fractionalWidth(0.25), height: .fractionalHeight(1), spacing: 8)
+        
+        // group
+        
+        let group = CompositionalLayout.createGroup(alignment: .horizontal, width: .fractionalWidth(1), height: .fractionalHeight(0.3), item:item,count: 3)
+        
+        // section
+        
+        let section = NSCollectionLayoutSection(group: group)
+        
+        
+        //return
+        
+        return UICollectionViewCompositionalLayout(section: section)
+    }
+
 }
 
 extension HomeViewController : HomeViewControllerProtocol {
@@ -36,7 +59,7 @@ extension HomeViewController : HomeViewControllerProtocol {
     }
     
     func setupCollectionView() {
-        
+        collectionView.collectionViewLayout = createLayout()
     }
     
     func showLoadingView() {

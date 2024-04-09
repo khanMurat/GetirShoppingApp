@@ -24,6 +24,11 @@
 		FB6B7B2E2BC551CC00044824 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6B7B2D2BC551CC00044824 /* UIColorExtension.swift */; };
 		FB6B7B322BC5522B00044824 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6B7B312BC5522B00044824 /* UIImageExtension.swift */; };
 		FB6B7B342BC55C0A00044824 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6B7B332BC55C0A00044824 /* HomeViewController.swift */; };
+		FB6B7B362BC55DAC00044824 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6B7B352BC55DAC00044824 /* HomePresenter.swift */; };
+		FB6B7B382BC5635900044824 /* HomeEntitiy.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6B7B372BC5635900044824 /* HomeEntitiy.swift */; };
+		FB6B7B3A2BC563B500044824 /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6B7B392BC563B500044824 /* HomeInteractor.swift */; };
+		FB6B7B3C2BC563BB00044824 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6B7B3B2BC563BB00044824 /* HomeRouter.swift */; };
+		FB6B7B3F2BC5800A00044824 /* CompositionalLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6B7B3E2BC5800A00044824 /* CompositionalLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +70,11 @@
 		FB6B7B2D2BC551CC00044824 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		FB6B7B312BC5522B00044824 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		FB6B7B332BC55C0A00044824 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		FB6B7B352BC55DAC00044824 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		FB6B7B372BC5635900044824 /* HomeEntitiy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEntitiy.swift; sourceTree = "<group>"; };
+		FB6B7B392BC563B500044824 /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
+		FB6B7B3B2BC563BB00044824 /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
+		FB6B7B3E2BC5800A00044824 /* CompositionalLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionalLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +193,10 @@
 			isa = PBXGroup;
 			children = (
 				FB6B7B332BC55C0A00044824 /* HomeViewController.swift */,
+				FB6B7B352BC55DAC00044824 /* HomePresenter.swift */,
+				FB6B7B372BC5635900044824 /* HomeEntitiy.swift */,
+				FB6B7B392BC563B500044824 /* HomeInteractor.swift */,
+				FB6B7B3B2BC563BB00044824 /* HomeRouter.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -226,6 +240,7 @@
 		FB6B7B1D2BC54A9F00044824 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				FB6B7B3D2BC57FFC00044824 /* CompositionalLayout */,
 				FB6B7B282BC550AF00044824 /* Reachibility */,
 			);
 			path = Utils;
@@ -237,6 +252,14 @@
 				FB6B7B292BC550BE00044824 /* Reachibility.swift */,
 			);
 			path = Reachibility;
+			sourceTree = "<group>";
+		};
+		FB6B7B3D2BC57FFC00044824 /* CompositionalLayout */ = {
+			isa = PBXGroup;
+			children = (
+				FB6B7B3E2BC5800A00044824 /* CompositionalLayout.swift */,
+			);
+			path = CompositionalLayout;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -372,12 +395,17 @@
 				FB6B7AE52BC547B600044824 /* AppDelegate.swift in Sources */,
 				FB6B7AE72BC547B600044824 /* SceneDelegate.swift in Sources */,
 				FB6B7B272BC54E7D00044824 /* SplashRouter.swift in Sources */,
+				FB6B7B3F2BC5800A00044824 /* CompositionalLayout.swift in Sources */,
+				FB6B7B3A2BC563B500044824 /* HomeInteractor.swift in Sources */,
 				FB6B7B232BC54C8900044824 /* SplashInteractor.swift in Sources */,
+				FB6B7B3C2BC563BB00044824 /* HomeRouter.swift in Sources */,
 				FB6B7B322BC5522B00044824 /* UIImageExtension.swift in Sources */,
+				FB6B7B382BC5635900044824 /* HomeEntitiy.swift in Sources */,
 				FB6B7B1F2BC54B7600044824 /* BaseViewController.swift in Sources */,
 				FB6B7B2C2BC5519900044824 /* StringExtension.swift in Sources */,
 				FB6B7B212BC54C2D00044824 /* SplashViewController.swift in Sources */,
 				FB6B7B2A2BC550BE00044824 /* Reachibility.swift in Sources */,
+				FB6B7B362BC55DAC00044824 /* HomePresenter.swift in Sources */,
 				FB6B7B252BC54D8300044824 /* SplashPresenter.swift in Sources */,
 				FB6B7B2E2BC551CC00044824 /* UIColorExtension.swift in Sources */,
 				FB6B7B342BC55C0A00044824 /* HomeViewController.swift in Sources */,
