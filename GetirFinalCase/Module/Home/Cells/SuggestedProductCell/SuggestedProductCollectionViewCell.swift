@@ -9,8 +9,8 @@ import UIKit
 
 protocol SuggestedProductProtocol : AnyObject {
     
-    func setProductImage(_ imageName : String)
-    func setSquareThumbnailImage(_ imageName : String)
+    func setProductImage(_ imageName : String?)
+    func setSquareThumbnailImage(_ imageName : String?)
     func setProductPriceText(_ priceText : String)
     func setProductPrice(_ price : Double)
     func setProductName(_ name : String)
@@ -23,7 +23,7 @@ final class SuggestedProductCollectionViewCell: UICollectionViewCell {
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.image = ._getirLogo
+//        iv.image = ._getirLogo
         return iv
     }()
     
@@ -86,12 +86,16 @@ final class SuggestedProductCollectionViewCell: UICollectionViewCell {
 
 extension SuggestedProductCollectionViewCell : SuggestedProductProtocol {
     
-    func setProductImage(_ imageName: String) {
-        print(imageName)
+    func setProductImage(_ imageName: String?) {
+        if let imageName = imageName {
+            productImageView.fetchImage(imageName, ._placeholder)
+        }
     }
     
-    func setSquareThumbnailImage(_ imageName: String) {
-        print(imageName)
+    func setSquareThumbnailImage(_ imageName: String?) {
+        if let imageName = imageName {
+            productImageView.fetchImage(imageName, ._placeholder)
+        }
     }
     
     func setProductPriceText(_ priceText: String) {

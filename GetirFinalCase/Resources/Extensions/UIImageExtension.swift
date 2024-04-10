@@ -15,4 +15,8 @@ extension UIImage {
         "getir-logo"._toImage
     }
     
+    static var _placeholder : UIImage? {
+        "placeholder"._toImage
+    }
+    
 }

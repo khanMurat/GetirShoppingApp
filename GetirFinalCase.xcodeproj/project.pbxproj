@@ -10,6 +10,7 @@
 		FB504B072BC6BE4A00AC1AED /* SuggestedProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB504B062BC6BE4A00AC1AED /* SuggestedProductCollectionViewCell.swift */; };
 		FB504B092BC6C5FB00AC1AED /* SuggestedProductCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB504B082BC6C5FB00AC1AED /* SuggestedProductCellPresenter.swift */; };
 		FB504B0B2BC6CE6700AC1AED /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB504B0A2BC6CE6700AC1AED /* UIImageViewExtension.swift */; };
+		FB504B0E2BC6CECB00AC1AED /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = FB504B0D2BC6CECB00AC1AED /* SDWebImage */; };
 		FB6B7AE52BC547B600044824 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6B7AE42BC547B600044824 /* AppDelegate.swift */; };
 		FB6B7AE72BC547B600044824 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6B7AE62BC547B600044824 /* SceneDelegate.swift */; };
 		FB6B7AEE2BC547B800044824 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB6B7AED2BC547B800044824 /* Assets.xcassets */; };
@@ -96,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB504B0E2BC6CECB00AC1AED /* SDWebImage in Frameworks */,
 				FB6B7B472BC59BFA00044824 /* RxMoya in Frameworks */,
 				FB6B7B452BC59BFA00044824 /* Moya in Frameworks */,
 			);
@@ -327,6 +329,7 @@
 			packageProductDependencies = (
 				FB6B7B442BC59BFA00044824 /* Moya */,
 				FB6B7B462BC59BFA00044824 /* RxMoya */,
+				FB504B0D2BC6CECB00AC1AED /* SDWebImage */,
 			);
 			productName = GetirFinalCase;
 			productReference = FB6B7AE12BC547B600044824 /* GetirFinalCase.app */;
@@ -402,6 +405,7 @@
 			mainGroup = FB6B7AD82BC547B600044824;
 			packageReferences = (
 				FB6B7B432BC59BF900044824 /* XCRemoteSwiftPackageReference "Moya" */,
+				FB504B0C2BC6CECB00AC1AED /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = FB6B7AE22BC547B600044824 /* Products */;
 			projectDirPath = "";
@@ -806,6 +810,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		FB504B0C2BC6CECB00AC1AED /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.19.1;
+			};
+		};
 		FB6B7B432BC59BF900044824 /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya";
@@ -817,6 +829,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		FB504B0D2BC6CECB00AC1AED /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FB504B0C2BC6CECB00AC1AED /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
 		FB6B7B442BC59BFA00044824 /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FB6B7B432BC59BF900044824 /* XCRemoteSwiftPackageReference "Moya" */;

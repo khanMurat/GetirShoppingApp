@@ -31,6 +31,7 @@ extension SuggestedProductCellPresenter : SuggestedProductCellPresenterProtocol 
         
         self.view?.setProductName(suggestedProduct.name ?? "")
         self.view?.setProductPriceText(suggestedProduct.priceText ?? "")
-        
+        self.view?.setProductImage(suggestedProduct.imageURL ?? suggestedProduct.squareThumbnailURL)
+        self.view?.setSquareThumbnailImage(suggestedProduct.squareThumbnailURL ?? suggestedProduct.imageURL)
     }
 }
