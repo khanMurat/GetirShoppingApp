@@ -44,11 +44,11 @@ struct ProductServiceManager {
             .map(Product.self)
     }
     
-    func getHorizontalProduct() -> Single<SuggestedProduct> {
+    func getHorizontalProduct() -> Single<[SuggestedProductsResponse]> {
         
         return provider.rx
             .request(.getHorizontalProduct)
             .filterSuccessfulStatusAndRedirectCodes()
-            .map(SuggestedProduct.self)
+            .map([SuggestedProductsResponse].self)
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 protocol HomePresenterProtocol : AnyObject {
     func viewdidLoad()
     func numberOfItems() -> Int
-    func product(_ index : Int) -> Product?
+    func product(_ index : Int) -> SuggestedProduct?
     func didSelectRowAt(index:Int)
     func tappedBasket()
     
@@ -22,7 +22,7 @@ final class HomePresenter {
     
     let router : HomeRouterProtocol!
     let interactor : HomeInteractorProtocol!
-    private var product : [Product] = []
+    private var product : [SuggestedProduct] = []
     
     init(view: HomeViewControllerProtocol, router: HomeRouterProtocol, interactor: HomeInteractorProtocol) {
         self.view = view
@@ -33,21 +33,23 @@ final class HomePresenter {
 }
 
 extension HomePresenter : HomePresenterProtocol {
+
     func viewdidLoad() {
         fetchProduct()
+        view.setupCollectionView()
     }
     
     func numberOfItems() -> Int {
         return product.count
     }
     
-    func product(_ index: Int) -> Product? {
+    func product(_ index: Int) -> SuggestedProduct? {
         
         return product[index]
     }
     
     func didSelectRowAt(index: Int) {
- 
+        print(product[index].id)
     }
     
     func tappedBasket() {
@@ -56,16 +58,17 @@ extension HomePresenter : HomePresenterProtocol {
     
     private func fetchProduct(){
         // showLoading
-        
         interactor.fetchProducts()
+        
     }
     
 }
 
 extension HomePresenter : HomeInteractorOutputProtocol {
-    func fetchProductsOutput(result: [Product]) {
+    func fetchProductsOutput(result: [SuggestedProduct]) {
         // hide loading
         self.product = result
+        view.reloadData()
     }
 
 }

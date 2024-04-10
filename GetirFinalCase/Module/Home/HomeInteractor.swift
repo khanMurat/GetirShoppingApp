@@ -6,26 +6,35 @@
 //
 
 import Foundation
+import RxSwift
 
 protocol HomeInteractorProtocol : AnyObject {
     func fetchProducts()
 }
 
 protocol HomeInteractorOutputProtocol : AnyObject {
-    func fetchProductsOutput(result : [Product])
+    func fetchProductsOutput(result : [SuggestedProduct])
 }
 
 final class HomeInteractor {
     
     var output : HomeInteractorOutputProtocol?
-    
+    private let disposeBag = DisposeBag()
     
 }
 
 extension HomeInteractor : HomeInteractorProtocol {
     func fetchProducts() {
         
-        self.output?.fetchProductsOutput(result: []) // backenddedn çektiğimiz productları göndereceğiz !
+        ProductServiceManager.shared.getHorizontalProduct()
+            .subscribe { [weak self] suggestedProduct in
+                self?.output?.fetchProductsOutput(result: suggestedProduct[0].products)
+                
+            }onFailure: { error in
+                print(error)
+            }.disposed(by: disposeBag)
+        
+        //        self.output?.fetchProductsOutput(result: []) // backenddedn çektiğimiz productları göndereceğiz !
         
     }
 }
