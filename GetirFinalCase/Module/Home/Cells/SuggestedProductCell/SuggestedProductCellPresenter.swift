@@ -15,11 +15,11 @@ protocol SuggestedProductCellPresenterProtocol : AnyObject {
 
 final class SuggestedProductCellPresenter {
     
-    weak var view : SuggestedProductCollectionViewCell?
+    weak var view : ProductCollectionViewCell?
     
     private let suggestedProduct : SuggestedProduct
     
-    init(view: SuggestedProductCollectionViewCell, suggestedProduct: SuggestedProduct) {
+    init(view: ProductCollectionViewCell, suggestedProduct: SuggestedProduct) {
         self.view = view
         self.suggestedProduct = suggestedProduct
     }

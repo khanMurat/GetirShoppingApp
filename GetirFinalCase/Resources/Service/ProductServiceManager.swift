@@ -36,12 +36,12 @@ struct ProductServiceManager {
     
     private let provider = MoyaProvider<ProductService>()
     
-    func getVerticalProduct() -> Single<Product> {
+    func getVerticalProduct() -> Single<[ProductCategory]> {
         
         return provider.rx
             .request(.getVerticalProduct)
             .filterSuccessfulStatusAndRedirectCodes()
-            .map(Product.self)
+            .map([ProductCategory].self)
     }
     
     func getHorizontalProduct() -> Single<[SuggestedProductsResponse]> {

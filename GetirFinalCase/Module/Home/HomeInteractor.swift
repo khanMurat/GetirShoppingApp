@@ -9,11 +9,13 @@ import Foundation
 import RxSwift
 
 protocol HomeInteractorProtocol : AnyObject {
-    func fetchProducts()
+    func fetchHorizontalProducts()
+    func fetchVerticalProducts()
 }
 
 protocol HomeInteractorOutputProtocol : AnyObject {
-    func fetchProductsOutput(result : [SuggestedProduct])
+    func fetchHorizontalProductsOutput(result : [SuggestedProduct])
+    func fetchVerticalProductsOutput(result : [Product])
 }
 
 final class HomeInteractor {
@@ -24,17 +26,25 @@ final class HomeInteractor {
 }
 
 extension HomeInteractor : HomeInteractorProtocol {
-    func fetchProducts() {
+    
+    
+    func fetchHorizontalProducts() {
         
         ProductServiceManager.shared.getHorizontalProduct()
             .subscribe { [weak self] suggestedProduct in
-                self?.output?.fetchProductsOutput(result: suggestedProduct[0].products)
-                
+                self?.output?.fetchHorizontalProductsOutput(result: suggestedProduct[0].products)
             }onFailure: { error in
                 print(error)
             }.disposed(by: disposeBag)
-        
-        //        self.output?.fetchProductsOutput(result: []) // backenddedn çektiğimiz productları göndereceğiz !
-        
     }
+    
+    func fetchVerticalProducts() {
+        ProductServiceManager.shared.getVerticalProduct()
+            .subscribe { [weak self] product in
+                self?.output?.fetchVerticalProductsOutput(result: product[0].products)
+            }onFailure: { error in
+                print(error)
+            }.disposed(by: disposeBag)
+    }
+    
 }

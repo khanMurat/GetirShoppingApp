@@ -18,8 +18,8 @@ struct Product: Decodable {
     let id: String?
     let name: String?
     let attribute: String?
-    let thumbnailURL: URL?
-    let imageURL: URL?
+    let thumbnailURL: String?
+    let imageURL: String?
     let price: Double?
     let priceText: String?
     let shortDescription: String?

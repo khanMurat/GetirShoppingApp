@@ -9,8 +9,10 @@ import Foundation
 
 protocol HomePresenterProtocol : AnyObject {
     func viewdidLoad()
-    func numberOfItems() -> Int
-    func product(_ index : Int) -> SuggestedProduct?
+    func numberOfHorizontalItems() -> Int
+    func numberOfVerticalItems() -> Int
+    func horizontalProduct(_ index : Int) -> SuggestedProduct?
+    func verticalProduct(_ index: Int) -> Product?
     func didSelectRowAt(index:Int)
     func tappedBasket()
     
@@ -22,7 +24,8 @@ final class HomePresenter {
     
     let router : HomeRouterProtocol!
     let interactor : HomeInteractorProtocol!
-    private var product : [SuggestedProduct] = []
+    private var horizontalProduct : [SuggestedProduct] = []
+    private var verticalProduct : [Product] = []
     
     init(view: HomeViewControllerProtocol, router: HomeRouterProtocol, interactor: HomeInteractorProtocol) {
         self.view = view
@@ -35,40 +38,55 @@ final class HomePresenter {
 extension HomePresenter : HomePresenterProtocol {
 
     func viewdidLoad() {
-        fetchProduct()
+        fetchVerticalProduct()
+        fetchHorizontalProduct()
         view.setupCollectionView()
     }
     
-    func numberOfItems() -> Int {
-        return product.count
+    func numberOfHorizontalItems() -> Int {
+        return horizontalProduct.count
     }
     
-    func product(_ index: Int) -> SuggestedProduct? {
+    func numberOfVerticalItems() -> Int {
+        return verticalProduct.count
+    }
+    
+    func horizontalProduct(_ index: Int) -> SuggestedProduct? {
         
-        return product[index]
+        return horizontalProduct[index]
+    }
+    
+    func verticalProduct(_ index: Int) -> Product? {
+        
+        return verticalProduct[index]
     }
     
     func didSelectRowAt(index: Int) {
-        print(product[index].id)
+        print(horizontalProduct[index].id)
     }
     
     func tappedBasket() {
         
     }
     
-    private func fetchProduct(){
+    private func fetchHorizontalProduct(){
         // showLoading
-        interactor.fetchProducts()
-        
+        interactor.fetchHorizontalProducts()
     }
     
+    private func fetchVerticalProduct(){
+        interactor.fetchVerticalProducts()
+    }
 }
 
 extension HomePresenter : HomeInteractorOutputProtocol {
-    func fetchProductsOutput(result: [SuggestedProduct]) {
-        // hide loading
-        self.product = result
-        view.reloadData()
+    func fetchHorizontalProductsOutput(result: [SuggestedProduct]) {
+        self.horizontalProduct = result
+        self.view.reloadData()
     }
-
+    
+    func fetchVerticalProductsOutput(result: [Product]) {
+        self.verticalProduct = result
+        self.view.reloadData()
+    }
 }

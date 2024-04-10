@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol SuggestedProductProtocol : AnyObject {
+protocol ProductProtocol : AnyObject {
     
     func setProductImage(_ imageName : String?)
     func setSquareThumbnailImage(_ imageName : String?)
@@ -16,14 +16,13 @@ protocol SuggestedProductProtocol : AnyObject {
     func setProductName(_ name : String)
 }
 
-final class SuggestedProductCollectionViewCell: UICollectionViewCell {
+final class ProductCollectionViewCell: UICollectionViewCell {
         
     private let productImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.translatesAutoresizingMaskIntoConstraints = false
-//        iv.image = ._getirLogo
         return iv
     }()
     
@@ -46,23 +45,65 @@ final class SuggestedProductCollectionViewCell: UICollectionViewCell {
     private lazy var stackView : UIStackView = {
        let sv = UIStackView()
         sv.distribution = .fill
-        sv.layer.borderColor = UIColor.systemGray5.cgColor
-        sv.layer.borderWidth = 0.3
+        sv.layer.borderColor = UIColor.systemGray4.cgColor
+        sv.layer.borderWidth = 0.5
         sv.layer.cornerRadius = 10
         sv.addArrangedSubview(productImageView)
         sv.translatesAutoresizingMaskIntoConstraints = false
         return sv
     }()
     
-    private let actionButton: UIButton = {
+    private let actionButtonAdd: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("+", for: .normal)
-        button.backgroundColor = .red
+        button.backgroundColor = .white
+        button.layer.borderWidth = 0.3
+        button.layer.borderColor = UIColor.systemGray4.cgColor
+        button.tintColor = .systemPurple
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+        
+    private let productCountLabel: UILabel = {
+        let lbl = UILabel()
+        lbl.font = .systemFont(ofSize: 12, weight: .light)
+        lbl.textColor = .white
+        lbl.text = "1"
+        lbl.textAlignment = .center
+        lbl.backgroundColor = .systemPurple
+        lbl.translatesAutoresizingMaskIntoConstraints = false
+        return lbl
+    }()
+    
+    private let actionButtonRemove: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("-", for: .normal)
+        button.backgroundColor = .white
+        button.layer.borderWidth = 0.3
+        button.layer.borderColor = UIColor.systemGray3.cgColor
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
-    var cellPresenter : SuggestedProductCellPresenterProtocol! {
+    private lazy var stackViewButtonAndLabel : UIStackView = {
+       let sv = UIStackView()
+        sv.distribution = .fillEqually
+        sv.spacing = 0
+        sv.axis = .vertical
+        sv.addArrangedSubview(productCountLabel)
+        sv.addArrangedSubview(actionButtonRemove)
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        return sv
+    }()
+
+    
+    var suggestedCellPresenter : SuggestedProductCellPresenterProtocol! {
+        didSet{
+            suggestedCellPresenter.load()
+        }
+    }
+    
+    var cellPresenter : ProductCellPresenterProtocol! {
         didSet{
             cellPresenter.load()
         }
@@ -75,19 +116,33 @@ final class SuggestedProductCollectionViewCell: UICollectionViewCell {
         addSubview(stackView)
         addSubview(productNameLabel)
         addSubview(productPriceLabel)
-        addSubview(actionButton)
+        addSubview(actionButtonAdd)
+        addSubview(stackViewButtonAndLabel)
         
-        actionButton.addTarget(self, action: #selector(handleActionButtonTap), for: .touchUpInside)
+        stackViewButtonAndLabel.isHidden = true
+        
+        actionButtonAdd.addTarget(self, action: #selector(handleActionButtonTap), for: .touchUpInside)
+        actionButtonRemove.addTarget(self, action: #selector(handleActionRemoveButtonTap), for: .touchUpInside)
         
         setupConstraints()
     }
     
     @objc private func handleActionButtonTap() {
-        UIView.animate(withDuration: 2.0) { [weak self] in
+        UIView.animate(withDuration: 1.0, delay: 0.0, options: [.curveEaseInOut], animations: { [weak self] in
             self?.stackView.layer.borderColor = UIColor.systemPurple.cgColor
-            self?.stackView.layer.borderWidth = 0.7
-        }
+            self?.stackView.layer.borderWidth = 1.0
+            self?.stackViewButtonAndLabel.isHidden = false
+        }, completion: nil)
     }
+    
+    @objc private func handleActionRemoveButtonTap() {
+        UIView.animate(withDuration: 1.0, delay: 0.0, options: [.curveEaseOut], animations: { [weak self] in
+            self?.stackView.layer.borderColor = UIColor.systemGray5.cgColor
+            self?.stackView.layer.borderWidth = 0.3
+            self?.stackViewButtonAndLabel.isHidden = true
+        }, completion: nil)
+    }
+
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
@@ -103,10 +158,16 @@ final class SuggestedProductCollectionViewCell: UICollectionViewCell {
             productNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 4),
             productNameLabel.topAnchor.constraint(equalTo: productPriceLabel.bottomAnchor, constant: 4),
             
-            actionButton.topAnchor.constraint(equalTo: stackView.topAnchor),
-            actionButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
-            actionButton.widthAnchor.constraint(equalToConstant: 30),
-            actionButton.heightAnchor.constraint(equalToConstant: 30)
+            actionButtonAdd.topAnchor.constraint(equalTo: stackView.topAnchor,constant: -8),
+            actionButtonAdd.trailingAnchor.constraint(equalTo: stackView.trailingAnchor,constant: 4),
+            actionButtonAdd.widthAnchor.constraint(equalToConstant: 30),
+            actionButtonAdd.heightAnchor.constraint(equalToConstant: 30),
+            
+            stackViewButtonAndLabel.topAnchor.constraint(equalTo: actionButtonAdd.bottomAnchor),
+            stackViewButtonAndLabel.bottomAnchor.constraint(equalTo: stackView.bottomAnchor,constant: -16),
+            stackViewButtonAndLabel.trailingAnchor.constraint(equalTo: stackView.trailingAnchor,constant: 4),
+            stackViewButtonAndLabel.widthAnchor.constraint(equalToConstant: 30),
+            
         ])
     }
     
@@ -116,7 +177,7 @@ final class SuggestedProductCollectionViewCell: UICollectionViewCell {
 }
 
 
-extension SuggestedProductCollectionViewCell : SuggestedProductProtocol {
+extension ProductCollectionViewCell : ProductProtocol {
     
     func setProductImage(_ imageName: String?) {
         if let imageName = imageName {
