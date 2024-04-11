@@ -1,5 +1,5 @@
 {
-  "originHash" : "266f9d8bbede4706cab4a6a4c372e65a7ff2af1ee3649dacf8a2bce916f7d396",
+  "originHash" : "73005ad7655e1f33f5ad2d7324e98725f0afa56ee11b036dfe503fe1d3145b6d",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -29,6 +29,24 @@
       }
     },
     {
+      "identity" : "realm-core",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/realm/realm-core.git",
+      "state" : {
+        "revision" : "f3417640021f329480035f432840eb0e5d0e1957",
+        "version" : "14.5.0"
+      }
+    },
+    {
+      "identity" : "realm-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/realm/realm-swift",
+      "state" : {
+        "branch" : "master",
+        "revision" : "2f0274f59a4771d1e778574f4315a320a5ed08a9"
+      }
+    },
+    {
       "identity" : "rxswift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ReactiveX/RxSwift.git",
@@ -44,15 +62,6 @@
       "state" : {
         "revision" : "f6afa0132961d593f07970d84e2d8b588c29ea04",
         "version" : "5.19.1"
-      }
-    },
-    {
-      "identity" : "sqlite.swift",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/stephencelis/SQLite.swift",
-      "state" : {
-        "revision" : "e78ae0220e17525a15ac68c697a155eb7a672a8e",
-        "version" : "0.15.0"
       }
     }
   ],
