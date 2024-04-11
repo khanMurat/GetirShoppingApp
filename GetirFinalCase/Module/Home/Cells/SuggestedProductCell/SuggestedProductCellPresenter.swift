@@ -8,9 +8,9 @@
 import Foundation
 
 protocol SuggestedProductCellPresenterProtocol : AnyObject {
-    
     func load()
-    
+    func addProductToBasket()
+    func removeProductFromBasket()
 }
 
 final class SuggestedProductCellPresenter {
@@ -23,7 +23,6 @@ final class SuggestedProductCellPresenter {
         self.view = view
         self.suggestedProduct = suggestedProduct
     }
-    
 }
 
 extension SuggestedProductCellPresenter : SuggestedProductCellPresenterProtocol {
@@ -33,5 +32,38 @@ extension SuggestedProductCellPresenter : SuggestedProductCellPresenterProtocol 
         self.view?.setProductPriceText(suggestedProduct.priceText ?? "")
         self.view?.setProductImage(suggestedProduct.imageURL ?? suggestedProduct.squareThumbnailURL)
         self.view?.setSquareThumbnailImage(suggestedProduct.squareThumbnailURL ?? suggestedProduct.imageURL)
+        self.view?.setStackViewColorIfIsBasket(ProductRepository.shared.checkIfProductInBasket(productID: suggestedProduct.id ?? ""))
+        self.view?.setProductBasketCount(checkProductCount())
+    }
+    
+    func addProductToBasket() {
+        let realmProduct = suggestedProduct.toRealmProduct()
+
+        ProductRepository.shared.addToBasket(product:realmProduct) { [weak self] success in
+            guard let self = self else { return }
+            if success {
+                self.view?.performAddToBasketAnimation()
+                self.view?.setProductBasketCount(checkProductCount())
+                NotificationCenter.default.post(name: .productAddedToBasket, object: nil, userInfo: ["productID": realmProduct.id])
+            }
+        }
+    }
+    
+    func removeProductFromBasket() {
+        
+        ProductRepository.shared.removeFromBasket(productID: suggestedProduct.id ?? "") {[weak self] (success,count) in
+            guard let self else {return}
+            
+            if success {
+                self.view?.performRemoveFromBasketAnimation(count ?? 0)
+                self.view?.setProductBasketCount(checkProductCount())
+                NotificationCenter.default.post(name: .productRemovedFromBasket, object: nil, userInfo: ["productID": suggestedProduct.id ?? ""])
+            }
+        }
+    }
+    
+    private func checkProductCount() -> Int {
+        
+        return ProductRepository.shared.checkProductBasketCount(productID: suggestedProduct.id ?? "")
     }
 }

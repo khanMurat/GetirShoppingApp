@@ -14,10 +14,16 @@ protocol ProductProtocol : AnyObject {
     func setProductPriceText(_ priceText : String)
     func setProductPrice(_ price : Double)
     func setProductName(_ name : String)
+    func setStackViewColorIfIsBasket(_ isBasket : Bool)
+    func performAddToBasketAnimation()
+    func performRemoveFromBasketAnimation(_ count : Int)
+    func setProductBasketCount(_ count: Int)
 }
 
 final class ProductCollectionViewCell: UICollectionViewCell {
-        
+    
+    //MARK: - Properties
+    
     private let productImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
@@ -27,7 +33,7 @@ final class ProductCollectionViewCell: UICollectionViewCell {
     }()
     
     private let productNameLabel: UILabel = {
-       let lbl = UILabel()
+        let lbl = UILabel()
         lbl.font = .systemFont(ofSize: 14)
         lbl.numberOfLines = 2
         lbl.translatesAutoresizingMaskIntoConstraints = false
@@ -43,7 +49,7 @@ final class ProductCollectionViewCell: UICollectionViewCell {
     }()
     
     private lazy var stackView : UIStackView = {
-       let sv = UIStackView()
+        let sv = UIStackView()
         sv.distribution = .fill
         sv.layer.borderColor = UIColor.systemGray4.cgColor
         sv.layer.borderWidth = 0.5
@@ -63,7 +69,7 @@ final class ProductCollectionViewCell: UICollectionViewCell {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-        
+    
     private let productCountLabel: UILabel = {
         let lbl = UILabel()
         lbl.font = .systemFont(ofSize: 12, weight: .light)
@@ -78,6 +84,7 @@ final class ProductCollectionViewCell: UICollectionViewCell {
     private let actionButtonRemove: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("-", for: .normal)
+        button.tintColor = .systemPurple
         button.backgroundColor = .white
         button.layer.borderWidth = 0.3
         button.layer.borderColor = UIColor.systemGray3.cgColor
@@ -86,7 +93,7 @@ final class ProductCollectionViewCell: UICollectionViewCell {
     }()
     
     private lazy var stackViewButtonAndLabel : UIStackView = {
-       let sv = UIStackView()
+        let sv = UIStackView()
         sv.distribution = .fillEqually
         sv.spacing = 0
         sv.axis = .vertical
@@ -95,7 +102,7 @@ final class ProductCollectionViewCell: UICollectionViewCell {
         sv.translatesAutoresizingMaskIntoConstraints = false
         return sv
     }()
-
+    
     
     var suggestedCellPresenter : SuggestedProductCellPresenterProtocol! {
         didSet{
@@ -109,9 +116,11 @@ final class ProductCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    //MARK: - Lifecycle
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-
+        
         backgroundColor = .white
         addSubview(stackView)
         addSubview(productNameLabel)
@@ -127,22 +136,21 @@ final class ProductCollectionViewCell: UICollectionViewCell {
         setupConstraints()
     }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: - Actions
+    
     @objc private func handleActionButtonTap() {
-        UIView.animate(withDuration: 1.0, delay: 0.0, options: [.curveEaseInOut], animations: { [weak self] in
-            self?.stackView.layer.borderColor = UIColor.systemPurple.cgColor
-            self?.stackView.layer.borderWidth = 1.0
-            self?.stackViewButtonAndLabel.isHidden = false
-        }, completion: nil)
+        suggestedCellPresenter.addProductToBasket()
     }
     
     @objc private func handleActionRemoveButtonTap() {
-        UIView.animate(withDuration: 1.0, delay: 0.0, options: [.curveEaseOut], animations: { [weak self] in
-            self?.stackView.layer.borderColor = UIColor.systemGray5.cgColor
-            self?.stackView.layer.borderWidth = 0.3
-            self?.stackViewButtonAndLabel.isHidden = true
-        }, completion: nil)
+        suggestedCellPresenter.removeProductFromBasket()
     }
-
+    
+    //MARK: - Helpers
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
@@ -167,15 +175,11 @@ final class ProductCollectionViewCell: UICollectionViewCell {
             stackViewButtonAndLabel.bottomAnchor.constraint(equalTo: stackView.bottomAnchor,constant: -16),
             stackViewButtonAndLabel.trailingAnchor.constraint(equalTo: stackView.trailingAnchor,constant: 4),
             stackViewButtonAndLabel.widthAnchor.constraint(equalToConstant: 30),
-            
         ])
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }
 
+//MARK: - Configuration
 
 extension ProductCollectionViewCell : ProductProtocol {
     
@@ -201,5 +205,41 @@ extension ProductCollectionViewCell : ProductProtocol {
     
     func setProductName(_ name: String) {
         self.productNameLabel.text = name
+    }
+    
+    func setStackViewColorIfIsBasket(_ isBasket: Bool) {
+        
+        if isBasket {
+            self.stackView.layer.borderColor = UIColor.systemPurple.cgColor
+            self.stackView.layer.borderWidth = 1.0
+            self.stackViewButtonAndLabel.isHidden = false
+        }
+        else{
+            self.stackView.layer.borderColor = UIColor.systemGray5.cgColor
+            self.stackView.layer.borderWidth = 0.3
+            self.stackViewButtonAndLabel.isHidden = true
+        }
+    }
+    
+    func performAddToBasketAnimation() {
+        UIView.animate(withDuration: 0.7, delay: 0.0, options: [.curveEaseInOut], animations: { [weak self] in
+            self?.stackView.layer.borderColor = UIColor.systemPurple.cgColor
+            self?.stackView.layer.borderWidth = 1.0
+            self?.stackViewButtonAndLabel.isHidden = false
+        }, completion: nil)
+    }
+    
+    func performRemoveFromBasketAnimation(_ count : Int) {
+        if count == 0 {
+            UIView.animate(withDuration: 0.7, delay: 0.0, options: [.curveEaseInOut], animations: { [weak self] in
+                self?.stackView.layer.borderColor = UIColor.systemGray5.cgColor
+                self?.stackView.layer.borderWidth = 1.0
+                self?.stackViewButtonAndLabel.isHidden = true
+            }, completion: nil)
+        }
+    }
+    
+    func setProductBasketCount(_ count: Int) {
+        productCountLabel.text = String(count)
     }
 }

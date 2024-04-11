@@ -11,11 +11,13 @@ import RxSwift
 protocol HomeInteractorProtocol : AnyObject {
     func fetchHorizontalProducts()
     func fetchVerticalProducts()
+    func fetchBasketProducts()
 }
 
 protocol HomeInteractorOutputProtocol : AnyObject {
     func fetchHorizontalProductsOutput(result : [SuggestedProduct])
     func fetchVerticalProductsOutput(result : [Product])
+    func fetchBasketProductsOutput(result: Double)
 }
 
 final class HomeInteractor {
@@ -26,8 +28,7 @@ final class HomeInteractor {
 }
 
 extension HomeInteractor : HomeInteractorProtocol {
-    
-    
+
     func fetchHorizontalProducts() {
         
         ProductServiceManager.shared.getHorizontalProduct()
@@ -47,4 +48,12 @@ extension HomeInteractor : HomeInteractorProtocol {
             }.disposed(by: disposeBag)
     }
     
+    func fetchBasketProducts() {
+        let basketItems = ProductRepository.shared.getAllBasketItems()
+
+        let basketItemsTotalPrice = basketItems.reduce(0.0) { (total, product) -> Double in
+            total + (product.price * Double(product.basketCount))
+        }
+        output?.fetchBasketProductsOutput(result: basketItemsTotalPrice)
+    }
 }

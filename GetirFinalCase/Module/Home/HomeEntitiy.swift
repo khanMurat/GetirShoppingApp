@@ -43,7 +43,20 @@ struct SuggestedProduct: Decodable {
     let unitPrice: Double?
     let squareThumbnailURL: String?
     let status: Int?
-    
+    var isInBasket: Bool? = false
+}
+
+extension SuggestedProduct {
+    func toRealmProduct() -> RealmProduct {
+        let realmProduct = RealmProduct()
+        realmProduct.id = self.id ?? ""
+        realmProduct.name = self.name ?? ""
+        realmProduct.imageURL = self.imageURL
+        realmProduct.price = self.price ?? 0.0
+        realmProduct.priceText = self.priceText
+        realmProduct.squareThumbnailURL = self.squareThumbnailURL
+        return realmProduct
+    }
 }
 
 

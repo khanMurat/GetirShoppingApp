@@ -13,6 +13,7 @@ protocol HomeViewControllerProtocol : AnyObject {
     func showLoadingView()
     func hideLoadingView()
     func showError(_ message:String)
+    func setupBarButtonItem(_ totalPrice : Double)
 }
 
 final class HomeViewController: BaseViewController {
@@ -32,6 +33,10 @@ final class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.viewdidLoad()
+    }
+    
+    @objc func handleBarButton(){
+        
     }
     
     
@@ -67,6 +72,13 @@ final class HomeViewController: BaseViewController {
 }
 
 extension HomeViewController : HomeViewControllerProtocol {
+    
+    func setupBarButtonItem(_ totalPrice: Double) {
+        let title = String(format: "%1.f", totalPrice)
+        let barItem = UIBarButtonItem(title: title, style: .plain, target: self, action: #selector(handleBarButton))
+        self.navigationItem.rightBarButtonItem = barItem
+    }
+    
     
     func reloadData() {
         DispatchQueue.main.async {

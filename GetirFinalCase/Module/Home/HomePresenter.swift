@@ -26,6 +26,7 @@ final class HomePresenter {
     let interactor : HomeInteractorProtocol!
     private var horizontalProduct : [SuggestedProduct] = []
     private var verticalProduct : [Product] = []
+    private var totalPrice : Double = 0.0
     
     init(view: HomeViewControllerProtocol, router: HomeRouterProtocol, interactor: HomeInteractorProtocol) {
         self.view = view
@@ -40,7 +41,9 @@ extension HomePresenter : HomePresenterProtocol {
     func viewdidLoad() {
         fetchVerticalProduct()
         fetchHorizontalProduct()
+        fetchTotalBasketPrice()
         view.setupCollectionView()
+        view.setupBarButtonItem(totalPrice)
     }
     
     func numberOfHorizontalItems() -> Int {
@@ -77,9 +80,14 @@ extension HomePresenter : HomePresenterProtocol {
     private func fetchVerticalProduct(){
         interactor.fetchVerticalProducts()
     }
+    
+    private func fetchTotalBasketPrice(){
+        interactor.fetchBasketProducts()
+    }
 }
 
 extension HomePresenter : HomeInteractorOutputProtocol {
+    
     func fetchHorizontalProductsOutput(result: [SuggestedProduct]) {
         self.horizontalProduct = result
         self.view.reloadData()
@@ -88,5 +96,9 @@ extension HomePresenter : HomeInteractorOutputProtocol {
     func fetchVerticalProductsOutput(result: [Product]) {
         self.verticalProduct = result
         self.view.reloadData()
+    }
+    
+    func fetchBasketProductsOutput(result: Double) {
+        self.totalPrice = result
     }
 }
