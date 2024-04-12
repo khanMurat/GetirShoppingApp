@@ -17,6 +17,8 @@
 		FB504B0B2BC6CE6700AC1AED /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB504B0A2BC6CE6700AC1AED /* UIImageViewExtension.swift */; };
 		FB504B0E2BC6CECB00AC1AED /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = FB504B0D2BC6CECB00AC1AED /* SDWebImage */; };
 		FB504B112BC7259100AC1AED /* ProductRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB504B102BC7259100AC1AED /* ProductRepository.swift */; };
+		FB5F647F2BC9AEDC004759E1 /* CustomAddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5F647E2BC9AEDC004759E1 /* CustomAddButton.swift */; };
+		FB5F64812BC9B49B004759E1 /* CustomStepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5F64802BC9B49B004759E1 /* CustomStepperView.swift */; };
 		FB6B7AE52BC547B600044824 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6B7AE42BC547B600044824 /* AppDelegate.swift */; };
 		FB6B7AE72BC547B600044824 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6B7AE62BC547B600044824 /* SceneDelegate.swift */; };
 		FB6B7AEE2BC547B800044824 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB6B7AED2BC547B800044824 /* Assets.xcassets */; };
@@ -81,6 +83,8 @@
 		FB504B082BC6C5FB00AC1AED /* SuggestedProductCellPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestedProductCellPresenter.swift; sourceTree = "<group>"; };
 		FB504B0A2BC6CE6700AC1AED /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		FB504B102BC7259100AC1AED /* ProductRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRepository.swift; sourceTree = "<group>"; };
+		FB5F647E2BC9AEDC004759E1 /* CustomAddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAddButton.swift; sourceTree = "<group>"; };
+		FB5F64802BC9B49B004759E1 /* CustomStepperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStepperView.swift; sourceTree = "<group>"; };
 		FB6B7AE12BC547B600044824 /* GetirFinalCase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetirFinalCase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB6B7AE42BC547B600044824 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FB6B7AE62BC547B600044824 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -327,6 +331,8 @@
 				FBAD9EDD2BC8396C00E52138 /* LoadingView.swift */,
 				FBAD9EDF2BC83A5700E52138 /* LoadingShowable.swift */,
 				FB443BCB2BC95A080036E2D9 /* BasketView.swift */,
+				FB5F647E2BC9AEDC004759E1 /* CustomAddButton.swift */,
+				FB5F64802BC9B49B004759E1 /* CustomStepperView.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -532,6 +538,7 @@
 				FB6B7B322BC5522B00044824 /* UIImageExtension.swift in Sources */,
 				FB443BD22BC973870036E2D9 /* DetailInteractor.swift in Sources */,
 				FB504B092BC6C5FB00AC1AED /* SuggestedProductCellPresenter.swift in Sources */,
+				FB5F647F2BC9AEDC004759E1 /* CustomAddButton.swift in Sources */,
 				FB504B112BC7259100AC1AED /* ProductRepository.swift in Sources */,
 				FBAD9ED82BC822E000E52138 /* ProductEntitiy.swift in Sources */,
 				FB6B7B382BC5635900044824 /* HomeEntitiy.swift in Sources */,
@@ -547,6 +554,7 @@
 				FB443BD02BC9737D0036E2D9 /* DetailPresenter.swift in Sources */,
 				FB6B7B252BC54D8300044824 /* SplashPresenter.swift in Sources */,
 				FB6B7B2E2BC551CC00044824 /* UIColorExtension.swift in Sources */,
+				FB5F64812BC9B49B004759E1 /* CustomStepperView.swift in Sources */,
 				FB6B7B342BC55C0A00044824 /* HomeViewController.swift in Sources */,
 				FB6E35192BC73707002F2ECD /* ProductCellPresenter.swift in Sources */,
 				FBAD9EE02BC83A5700E52138 /* LoadingShowable.swift in Sources */,
