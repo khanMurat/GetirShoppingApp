@@ -78,11 +78,11 @@ extension HomePresenter : HomePresenterProtocol {
     }
     
     private func fetchHorizontalProduct(){
-        // showLoading
         interactor.fetchHorizontalProducts()
     }
     
     private func fetchVerticalProduct(){
+        view.showLoadingView()
         interactor.fetchVerticalProducts()
     }
     
@@ -103,6 +103,7 @@ extension HomePresenter : HomeInteractorOutputProtocol {
     }
     
     func fetchVerticalProductsOutput(result: [Product]) {
+        view.hideLoadingView()
         self.verticalProduct = result
         self.view.reloadData()
     }

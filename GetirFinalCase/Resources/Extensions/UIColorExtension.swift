@@ -38,3 +38,16 @@ extension UIColor {
         )
     }
 }
+
+
+
+extension UIColor {
+    
+    static var color_purple: UIColor {
+        return UIColor(hexString: "#5940b5")
+    }
+    
+    static var color_lightGray: UIColor {
+        return UIColor(hexString: "#F2F0FA")
+    }
+}

@@ -28,13 +28,15 @@ final class HomeViewController: BaseViewController {
         return collectionView
     }()
     
+    var basketView = BasketView()
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.viewdidLoad()
     }
-
+    
     deinit {
         presenter.removeNotifications()
     }
@@ -48,7 +50,7 @@ final class HomeViewController: BaseViewController {
         return UICollectionViewCompositionalLayout { (sectionNumber, env) -> NSCollectionLayoutSection? in
             if sectionNumber == 0 {
                 let item = CompositionalLayout.createItem(width: .fractionalWidth(0.33), height: .fractionalHeight(1), spacing: 8)
-                let group = CompositionalLayout.createGroup(alignment: .horizontal, width: .fractionalWidth(1), height: .fractionalHeight(0.25), items : [item])
+                let group = CompositionalLayout.createGroup(alignment: .horizontal, width: .fractionalWidth(1), height: .absolute(185), items : [item])
                 let section = NSCollectionLayoutSection(group: group)
                 section.orthogonalScrollingBehavior = .continuous
                 section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
@@ -58,7 +60,7 @@ final class HomeViewController: BaseViewController {
                 
                 let item = CompositionalLayout.createItem(width: .fractionalWidth(1), height: .fractionalHeight(1), spacing: 8)
                 
-                let group = CompositionalLayout.createGroup(alignment: .horizontal, width: .fractionalWidth(1), height: .fractionalHeight(0.25), item: item, count: 3)
+                let group = CompositionalLayout.createGroup(alignment: .horizontal, width: .fractionalWidth(1), height: .absolute(185), item: item, count: 3)
                 
                 let section = NSCollectionLayoutSection(group: group)
                 section.contentInsets = .init(top: 8, leading: 8, bottom: 8, trailing: 20)
@@ -78,11 +80,40 @@ final class HomeViewController: BaseViewController {
 extension HomeViewController : HomeViewControllerProtocol {
     
     func setupBarButtonItem(_ totalPrice: Double) {
-        let title = String(format: "₺%.2f", totalPrice)
-        let barItem = UIBarButtonItem(title: title, style: .plain, target: self, action: #selector(handleBarButton))
-        self.navigationItem.rightBarButtonItem = barItem
+        if totalPrice > 0 {
+            basketView.widthAnchor.constraint(equalToConstant: 91).isActive = true
+            basketView.heightAnchor.constraint(equalToConstant: 34).isActive = true
+            basketView.setTotalPrice(totalPrice)
+            let basketButtonItem = UIBarButtonItem(customView: basketView)
+            navigationItem.rightBarButtonItem = basketButtonItem
+            showBarButtonItemWithAnimation()
+        } else {
+            hideBarButtonItemWithAnimation()
+        }
     }
     
+    private func showBarButtonItemWithAnimation() {
+        guard let basketView = self.navigationItem.rightBarButtonItem?.customView else { return }
+        
+        basketView.transform = CGAffineTransform(translationX: basketView.frame.width, y: 0)
+        basketView.alpha = 0
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            basketView.transform = .identity
+            basketView.alpha = 1
+        })
+    }
+    
+    private func hideBarButtonItemWithAnimation() {
+        guard let basketView = self.navigationItem.rightBarButtonItem?.customView else { return }
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            basketView.transform = CGAffineTransform(translationX: basketView.frame.width, y: 0)
+            basketView.alpha = 0
+        }) { _ in
+            self.navigationItem.rightBarButtonItem = nil
+        }
+    }
     
     func reloadData() {
         DispatchQueue.main.async {
@@ -106,15 +137,15 @@ extension HomeViewController : HomeViewControllerProtocol {
         collectionView.backgroundColor = .white
         collectionView.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: "cellIdentifier")
         collectionView.register(CollectionViewHeaderReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "CollectionViewHeaderReusableView")
-        }
+    }
     
     
     func showLoadingView() {
-        
+        self.showLoading()
     }
     
     func hideLoadingView() {
-        
+        self.hideLoading()
     }
     
     func showError(_ message: String) {

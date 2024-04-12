@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BaseViewController: UIViewController {
+class BaseViewController: UIViewController,LoadingShowable {
     
     //MARK: - Properties
     
@@ -38,7 +38,7 @@ class BaseViewController: UIViewController {
     func navBarStyle(){
         
         let appearance = UINavigationBarAppearance()
-        appearance.backgroundColor = .systemPurple
+        appearance.backgroundColor = .color_purple
         appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
         

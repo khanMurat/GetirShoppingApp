@@ -19,4 +19,15 @@ extension UIImage {
         "placeholder"._toImage
     }
     
+    static var _trash : UIImage? {
+        "trash"._toImage
+    }
+    
+    static var _basket : UIImage? {
+        "basket"._toImage
+    }
+    
+    static var _plusm : UIImage? {
+        "plus-sm"._toImage
+    }
 }

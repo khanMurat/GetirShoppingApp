@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FB443BCC2BC95A080036E2D9 /* BasketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB443BCB2BC95A080036E2D9 /* BasketView.swift */; };
 		FB504B072BC6BE4A00AC1AED /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB504B062BC6BE4A00AC1AED /* ProductCollectionViewCell.swift */; };
 		FB504B092BC6C5FB00AC1AED /* SuggestedProductCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB504B082BC6C5FB00AC1AED /* SuggestedProductCellPresenter.swift */; };
 		FB504B0B2BC6CE6700AC1AED /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB504B0A2BC6CE6700AC1AED /* UIImageViewExtension.swift */; };
@@ -67,6 +68,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FB443BCB2BC95A080036E2D9 /* BasketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketView.swift; sourceTree = "<group>"; };
 		FB504B062BC6BE4A00AC1AED /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		FB504B082BC6C5FB00AC1AED /* SuggestedProductCellPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestedProductCellPresenter.swift; sourceTree = "<group>"; };
 		FB504B0A2BC6CE6700AC1AED /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 				FB6B7B282BC550AF00044824 /* Reachibility */,
 				FBAD9EDD2BC8396C00E52138 /* LoadingView.swift */,
 				FBAD9EDF2BC83A5700E52138 /* LoadingShowable.swift */,
+				FB443BCB2BC95A080036E2D9 /* BasketView.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -519,6 +522,7 @@
 				FB6B7B382BC5635900044824 /* HomeEntitiy.swift in Sources */,
 				FB504B072BC6BE4A00AC1AED /* ProductCollectionViewCell.swift in Sources */,
 				FB6B7B1F2BC54B7600044824 /* BaseViewController.swift in Sources */,
+				FB443BCC2BC95A080036E2D9 /* BasketView.swift in Sources */,
 				FB6B7B2C2BC5519900044824 /* StringExtension.swift in Sources */,
 				FB6B7B212BC54C2D00044824 /* SplashViewController.swift in Sources */,
 				FB6B7B2A2BC550BE00044824 /* Reachibility.swift in Sources */,

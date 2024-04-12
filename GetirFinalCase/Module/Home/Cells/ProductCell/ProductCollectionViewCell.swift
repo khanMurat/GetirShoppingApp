@@ -33,7 +33,7 @@ final class ProductCollectionViewCell: UICollectionViewCell {
     
     private let productNameLabel: UILabel = {
         let lbl = UILabel()
-        lbl.font = .systemFont(ofSize: 14)
+        lbl.font = .systemFont(ofSize: 12)
         lbl.numberOfLines = 2
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
@@ -41,8 +41,8 @@ final class ProductCollectionViewCell: UICollectionViewCell {
     
     private let productPriceLabel: UILabel = {
         let lbl = UILabel()
-        lbl.font = .systemFont(ofSize: 12, weight: .light)
-        lbl.textColor = .systemPurple
+        lbl.font = .systemFont(ofSize: 14, weight: .semibold)
+        lbl.textColor = UIColor.color_purple
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
@@ -50,9 +50,9 @@ final class ProductCollectionViewCell: UICollectionViewCell {
     private lazy var stackView : UIStackView = {
         let sv = UIStackView()
         sv.distribution = .fill
-        sv.layer.borderColor = UIColor.systemGray4.cgColor
-        sv.layer.borderWidth = 0.5
-        sv.layer.cornerRadius = 10
+        sv.layer.borderColor = UIColor.color_lightGray.cgColor
+        sv.layer.borderWidth = 1
+        sv.layer.cornerRadius = 16
         sv.addArrangedSubview(productImageView)
         sv.translatesAutoresizingMaskIntoConstraints = false
         return sv
@@ -60,33 +60,32 @@ final class ProductCollectionViewCell: UICollectionViewCell {
     
     private let actionButtonAdd: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("+", for: .normal)
         button.backgroundColor = .white
-        button.layer.borderWidth = 0.3
-        button.layer.borderColor = UIColor.systemGray4.cgColor
-        button.tintColor = .systemPurple
+        button.layer.cornerRadius = 8
+        button.setImage(._plusm?.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.color_lightGray.cgColor
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     private let productCountLabel: UILabel = {
         let lbl = UILabel()
-        lbl.font = .systemFont(ofSize: 12, weight: .light)
+        lbl.font = .systemFont(ofSize: 12, weight: .semibold)
         lbl.textColor = .white
         lbl.text = "1"
         lbl.textAlignment = .center
-        lbl.backgroundColor = .systemPurple
+        lbl.backgroundColor = UIColor.color_purple
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
     
     private let actionButtonRemove: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("-", for: .normal)
-        button.tintColor = .systemPurple
+        button.setImage(._trash?.withRenderingMode(.alwaysOriginal), for: .normal)
         button.backgroundColor = .white
-        button.layer.borderWidth = 0.3
-        button.layer.borderColor = UIColor.systemGray3.cgColor
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.color_lightGray.cgColor
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -158,10 +157,10 @@ final class ProductCollectionViewCell: UICollectionViewCell {
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: topAnchor, constant: 12),
+            stackView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 4),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 8),
-            stackView.heightAnchor.constraint(equalToConstant: 100),
+            stackView.heightAnchor.constraint(equalToConstant: 104),
             
             productPriceLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 4),
             productPriceLabel.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 4),
@@ -172,13 +171,13 @@ final class ProductCollectionViewCell: UICollectionViewCell {
             
             actionButtonAdd.topAnchor.constraint(equalTo: stackView.topAnchor,constant: -8),
             actionButtonAdd.trailingAnchor.constraint(equalTo: stackView.trailingAnchor,constant: 4),
-            actionButtonAdd.widthAnchor.constraint(equalToConstant: 30),
-            actionButtonAdd.heightAnchor.constraint(equalToConstant: 30),
+            actionButtonAdd.widthAnchor.constraint(equalToConstant: 32),
+            actionButtonAdd.heightAnchor.constraint(equalToConstant: 32),
             
-            stackViewButtonAndLabel.topAnchor.constraint(equalTo: actionButtonAdd.bottomAnchor),
-            stackViewButtonAndLabel.bottomAnchor.constraint(equalTo: stackView.bottomAnchor,constant: -16),
+            stackViewButtonAndLabel.topAnchor.constraint(equalTo: actionButtonAdd.bottomAnchor,constant: -4),
+            stackViewButtonAndLabel.bottomAnchor.constraint(equalTo: stackView.bottomAnchor,constant: -12),
             stackViewButtonAndLabel.trailingAnchor.constraint(equalTo: stackView.trailingAnchor,constant: 4),
-            stackViewButtonAndLabel.widthAnchor.constraint(equalToConstant: 30),
+            stackViewButtonAndLabel.widthAnchor.constraint(equalToConstant: 32),
         ])
     }
 }
@@ -211,20 +210,20 @@ extension ProductCollectionViewCell : ProductProtocol {
     func setStackViewColorIfIsBasket(_ isBasket: Bool) {
         
         if isBasket {
-            self.stackView.layer.borderColor = UIColor.systemPurple.cgColor
+            self.stackView.layer.borderColor = UIColor.color_purple.cgColor
             self.stackView.layer.borderWidth = 1.5
             self.stackViewButtonAndLabel.isHidden = false
         }
         else{
-            self.stackView.layer.borderColor = UIColor.systemGray5.cgColor
-            self.stackView.layer.borderWidth = 0.7
+            self.stackView.layer.borderColor = UIColor.color_lightGray.cgColor
+            self.stackView.layer.borderWidth = 1
             self.stackViewButtonAndLabel.isHidden = true
         }
     }
     
     func performAddToBasketAnimation() {
         UIView.animate(withDuration: 0.7, delay: 0.0, options: [.curveEaseInOut], animations: { [weak self] in
-            self?.stackView.layer.borderColor = UIColor.systemPurple.cgColor
+            self?.stackView.layer.borderColor = UIColor.color_purple.cgColor
             self?.stackView.layer.borderWidth = 1.5
             self?.stackViewButtonAndLabel.isHidden = false
         }, completion: nil)
@@ -233,8 +232,8 @@ extension ProductCollectionViewCell : ProductProtocol {
     func performRemoveFromBasketAnimation(_ count : Int) {
         if count == 0 {
             UIView.animate(withDuration: 0.7, delay: 0.0, options: [.curveEaseInOut], animations: { [weak self] in
-                self?.stackView.layer.borderColor = UIColor.systemGray5.cgColor
-                self?.stackView.layer.borderWidth = 0.7
+                self?.stackView.layer.borderColor = UIColor.color_lightGray.cgColor
+                self?.stackView.layer.borderWidth = 1
                 self?.stackViewButtonAndLabel.isHidden = true
             }, completion: nil)
         }
