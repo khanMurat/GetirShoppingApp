@@ -13,6 +13,7 @@ protocol ProductProtocol : AnyObject {
     func setSquareThumbnailImage(_ imageName : String?)
     func setProductPriceText(_ priceText : String)
     func setProductName(_ name : String)
+    func setProductAttribute(_ name : String)
     func setStackViewColorIfIsBasket(_ isBasket : Bool)
     func performAddToBasketAnimation()
     func performRemoveFromBasketAnimation(_ count : Int)
@@ -43,6 +44,14 @@ final class ProductCollectionViewCell: UICollectionViewCell {
         let lbl = UILabel()
         lbl.font = .systemFont(ofSize: 14, weight: .semibold)
         lbl.textColor = UIColor.color_purple
+        lbl.translatesAutoresizingMaskIntoConstraints = false
+        return lbl
+    }()
+    
+    private let productAttributeLabel : UILabel = {
+       let lbl = UILabel()
+        lbl.textColor = .color_secondaryText
+        lbl.font = .systemFont(ofSize: 12, weight: .semibold)
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
@@ -128,6 +137,7 @@ final class ProductCollectionViewCell: UICollectionViewCell {
         addSubview(stackView)
         addSubview(productNameLabel)
         addSubview(productPriceLabel)
+        addSubview(productAttributeLabel)
         addSubview(actionButtonAdd)
         addSubview(stackViewButtonAndLabel)
         
@@ -169,6 +179,10 @@ final class ProductCollectionViewCell: UICollectionViewCell {
             productNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 4),
             productNameLabel.topAnchor.constraint(equalTo: productPriceLabel.bottomAnchor, constant: 4),
             
+            productAttributeLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 4),
+            productAttributeLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 4),
+            productAttributeLabel.topAnchor.constraint(equalTo: productNameLabel.bottomAnchor, constant: 4),
+            
             actionButtonAdd.topAnchor.constraint(equalTo: stackView.topAnchor,constant: -8),
             actionButtonAdd.trailingAnchor.constraint(equalTo: stackView.trailingAnchor,constant: 4),
             actionButtonAdd.widthAnchor.constraint(equalToConstant: 32),
@@ -205,6 +219,10 @@ extension ProductCollectionViewCell : ProductProtocol {
     
     func setProductName(_ name: String) {
         self.productNameLabel.text = name
+    }
+    
+    func setProductAttribute(_ name: String) {
+        self.productAttributeLabel.text = name
     }
     
     func setStackViewColorIfIsBasket(_ isBasket: Bool) {

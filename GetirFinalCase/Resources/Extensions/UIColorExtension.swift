@@ -50,4 +50,8 @@ extension UIColor {
     static var color_lightGray: UIColor {
         return UIColor(hexString: "#F2F0FA")
     }
+    
+    static var color_secondaryText : UIColor {
+        return UIColor(hexString: "#697488")
+    }
 }

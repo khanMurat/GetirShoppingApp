@@ -35,6 +35,7 @@ extension Product {
         realmProduct.price = self.price ?? 0.0
         realmProduct.priceText = self.priceText
         realmProduct.thumbnailURL = self.thumbnailURL
+        realmProduct.attribute = self.attribute
         return realmProduct
     }
 }
@@ -67,6 +68,7 @@ extension SuggestedProduct {
         realmProduct.imageURL = self.imageURL
         realmProduct.price = self.price ?? 0.0
         realmProduct.priceText = self.priceText
+        realmProduct.attribute = self.shortDescription ?? ""
         realmProduct.squareThumbnailURL = self.squareThumbnailURL
         return realmProduct
     }

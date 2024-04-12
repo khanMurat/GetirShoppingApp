@@ -66,7 +66,7 @@ extension HomePresenter : HomePresenterProtocol {
     }
     
     func didSelectRowAt(index: Int) {
-        print(horizontalProduct[index].id)
+        print("horizontalProduct[index].id")
     }
     
     func tappedBasket() {

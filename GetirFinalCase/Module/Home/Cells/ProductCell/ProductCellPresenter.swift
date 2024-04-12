@@ -33,6 +33,7 @@ extension ProductCellPresenter : ProductCellPresenterProtocol {
         
         self.view?.setProductName(product.name ?? "")
         self.view?.setProductPriceText(product.priceText ?? "")
+        self.view?.setProductAttribute(product.attribute ?? product.shortDescription ?? "")
         self.view?.setProductImage(product.imageURL ?? product.thumbnailURL)
         self.view?.setSquareThumbnailImage(product.thumbnailURL ?? product.imageURL)
         self.view?.setStackViewColorIfIsBasket(ProductRepository.shared.checkIfProductInBasket(productID: product.id ?? ""))

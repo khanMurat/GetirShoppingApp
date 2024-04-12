@@ -24,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window.makeKeyAndVisible()
         
-        window.rootViewController = splash
+        window.rootViewController = DetailViewController()
 
         self.window = window
     }
