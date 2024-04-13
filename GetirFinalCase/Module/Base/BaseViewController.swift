@@ -43,7 +43,7 @@ class BaseViewController: UIViewController,LoadingShowable {
         basketView.transform = CGAffineTransform(translationX: basketView.frame.width, y: 0)
         basketView.alpha = 0
         
-        UIView.animate(withDuration: 0.7, animations: {
+        UIView.animate(withDuration: 0.3, animations: {
             basketView.transform = .identity
             basketView.alpha = 1
         })

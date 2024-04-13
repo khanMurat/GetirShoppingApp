@@ -8,10 +8,10 @@
 import Foundation
 
 struct ProductCategory: Decodable {
-    let id: String
-    let name: String
-    let productCount: Int
-    let products: [Product]
+    let id: String?
+    let name: String?
+    let productCount: Int?
+    let products: [Product]?
 }
 
 struct Product: Decodable {
@@ -41,9 +41,9 @@ extension Product {
 }
 
 struct SuggestedProductsResponse: Decodable {
-    let products: [SuggestedProduct]
-    let id: String
-    let name: String
+    let products: [SuggestedProduct]?
+    let id: String?
+    let name: String?
 }
 
 struct SuggestedProduct: Decodable {

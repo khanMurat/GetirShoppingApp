@@ -41,7 +41,7 @@ extension HomeInteractor : HomeInteractorProtocol {
         
         ProductServiceManager.shared.getHorizontalProduct()
             .subscribe { [weak self] suggestedProduct in
-                self?.output?.fetchHorizontalProductsOutput(result: suggestedProduct[0].products)
+                self?.output?.fetchHorizontalProductsOutput(result: suggestedProduct[0].products ?? [])
             }onFailure: { error in
                 print(error)
             }.disposed(by: disposeBag)
@@ -50,7 +50,7 @@ extension HomeInteractor : HomeInteractorProtocol {
     func fetchVerticalProducts() {
         ProductServiceManager.shared.getVerticalProduct()
             .subscribe { [weak self] product in
-                self?.output?.fetchVerticalProductsOutput(result: product[0].products)
+                self?.output?.fetchVerticalProductsOutput(result: product[0].products ?? [])
             }onFailure: { error in
                 print(error)
             }.disposed(by: disposeBag)

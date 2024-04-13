@@ -83,7 +83,7 @@ final class HomeViewController: BaseViewController {
 }
 
 extension HomeViewController : HomeViewControllerProtocol {
-        
+    
     func reloadData() {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
@@ -104,8 +104,8 @@ extension HomeViewController : HomeViewControllerProtocol {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.backgroundColor = .white
-        collectionView.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: "cellIdentifier")
-        collectionView.register(CollectionViewHeaderReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "CollectionViewHeaderReusableView")
+        collectionView.register(cellClass: ProductCollectionViewCell.self)
+        collectionView.registerHeader(viewType: CollectionViewHeaderReusableView.self)
     }
     
     
@@ -128,7 +128,7 @@ extension HomeViewController : HomeViewControllerProtocol {
         basketView.setTotalPrice(totalPrice)
         let basketButtonItem = UIBarButtonItem(customView: basketView)
         navigationItem.rightBarButtonItem = basketButtonItem
-
+        
         if totalPrice > 0 {
             self.showBarButtonItemWithAnimation(basketView: basketView)
         } else {
@@ -157,17 +157,16 @@ extension HomeViewController : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch indexPath.section {
         case 0:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellIdentifier", for: indexPath) as? ProductCollectionViewCell else {
-                fatalError("Unable to dequeue HorizontalProductCollectionViewCell")
-            }
+            
+            let cell = collectionView.dequeueReusableCell(with: ProductCollectionViewCell.self, for: indexPath)
+            
             if let product = presenter.horizontalProduct(indexPath.row) {
                 cell.suggestedCellPresenter = SuggestedProductCellPresenter(view: cell, suggestedProduct: product)
             }
             return cell
         case 1:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellIdentifier", for: indexPath) as? ProductCollectionViewCell else {
-                fatalError("Unable to dequeue VerticalProductCollectionViewCell")
-            }
+            let cell = collectionView.dequeueReusableCell(with: ProductCollectionViewCell.self, for: indexPath)
+            
             if let product = presenter.verticalProduct(indexPath.row) {
                 cell.cellPresenter = ProductCellPresenter(view: cell, product: product)
             }
@@ -176,7 +175,6 @@ extension HomeViewController : UICollectionViewDataSource {
             fatalError("Unexpected section")
         }
     }
-    
 }
 
 extension HomeViewController : UICollectionViewDelegate {
@@ -188,7 +186,7 @@ extension HomeViewController : UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CollectionViewHeaderReusableView", for: indexPath) as! CollectionViewHeaderReusableView
+            let header = collectionView.dequeueReusableHeaderView(with: CollectionViewHeaderReusableView.self, for: indexPath)
             return header
         default:
             return UICollectionReusableView()

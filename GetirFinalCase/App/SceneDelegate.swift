@@ -24,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window.makeKeyAndVisible()
         
-        window.rootViewController = BasketViewController()
+        window.rootViewController = splash
 
         self.window = window
     }
