@@ -11,6 +11,7 @@ import UIKit
 enum HomeRoutes {
     case detailView(product: Product)
     case detailViewSuggested(suggestedProduct: SuggestedProduct)
+    case basketView
 }
 
 protocol HomeRouterProtocol : AnyObject {
@@ -53,6 +54,12 @@ extension HomeRouter : HomeRouterProtocol {
             
             let detailVC = DetailRouter.createModule(withSuggestedProduct: suggestedProduct)
             let nav = UINavigationController(rootViewController: detailVC)
+            nav.modalPresentationStyle = .fullScreen
+            viewController?.present(nav, animated: true)
+            
+        case .basketView:
+            let basketVC = BasketRouter.createModule()
+            let nav = UINavigationController(rootViewController: basketVC)
             nav.modalPresentationStyle = .fullScreen
             viewController?.present(nav, animated: true)
         }

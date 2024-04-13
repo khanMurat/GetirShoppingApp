@@ -78,7 +78,7 @@ extension HomePresenter : HomePresenterProtocol {
     }
     
     func tappedBasket() {
-        // router -> To basketVC
+        router.navigate(.basketView)
     }
     
     func removeNotifications() {

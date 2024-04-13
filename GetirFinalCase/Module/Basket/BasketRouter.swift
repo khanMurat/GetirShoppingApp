@@ -32,7 +32,6 @@ final class BasketRouter {
         
         return view
     }
-    
 }
 
 extension BasketRouter : BasketRouterProtocol {

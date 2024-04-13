@@ -12,7 +12,7 @@ protocol BasketViewControllerProtocol : AnyObject {
     func setupCollectionView()
     func showLoadingView()
     func hideLoadingView()
-    
+    func showLeftBarButton()
 }
 
 final class BasketViewController : BaseViewController {
@@ -27,7 +27,7 @@ final class BasketViewController : BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        presenter.viewdidLoad()
+        presenter.viewdidLoad()
         setupCollectionView()
     }
     
@@ -77,6 +77,27 @@ final class BasketViewController : BaseViewController {
     }
 }
 
+extension BasketViewController : BasketViewControllerProtocol {
+    func reloadData() {
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
+    
+    func showLoadingView() {
+        self.showLoading()
+    }
+    
+    func hideLoadingView() {
+        self.hideLoading()
+    }
+    
+    func showLeftBarButton() {
+        self.showDismissBarButton()
+    }
+    
+}
+
 extension BasketViewController : UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -87,9 +108,9 @@ extension BasketViewController : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if section == 0 {
-            return 10
+            return presenter.numberOfBasketItems()
         } else if section == 1 {
-            return 10
+            return presenter.numberOfSuggestedItems()
         }
         return 0
     }
@@ -99,15 +120,15 @@ extension BasketViewController : UICollectionViewDataSource {
         case 0:
             let cell = collectionView.dequeueReusableCell(with: BasketProductCollectionViewCell.self, for: indexPath)
             
-            //            if let product = presenter.horizontalProduct(indexPath.row) {
-            //                cell.suggestedCellPresenter = SuggestedProductCellPresenter(view: cell, suggestedProduct: product)
-            //            }
+            //                        if let product = presenter.basketProduct(indexPath.row) {
+            //                            cell.suggestedCellPresenter = SuggestedProductCellPresenter(view: cell, suggestedProduct: product)
+            //                        }
             return cell
         case 1:
             let cell = collectionView.dequeueReusableCell(with: ProductCollectionViewCell.self, for: indexPath)
-            //            if let product = presenter.verticalProduct(indexPath.row) {
-            //                cell.cellPresenter = ProductCellPresenter(view: cell, product: product)
-            //            }
+            if let product = presenter.suggestedProduct(indexPath.row) {
+                cell.suggestedCellPresenter = SuggestedProductCellPresenter(view: cell, suggestedProduct: product)
+            }
             return cell
         default:
             fatalError("Unexpected section")

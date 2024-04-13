@@ -40,17 +40,11 @@ final class HomeViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         presenter.viewdidLoad()
-        print("VİEW WILL APPEAR -*-**-*-*-*-*-*-")
     }
     
     deinit {
         presenter.removeNotifications()
     }
-    
-    @objc func handleBarButton(){
-        
-    }
-    
     
     private func createLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { (sectionNumber, env) -> NSCollectionLayoutSection? in
@@ -125,6 +119,10 @@ extension HomeViewController : HomeViewControllerProtocol {
         basketView.widthAnchor.constraint(equalToConstant: 91).isActive = true
         basketView.heightAnchor.constraint(equalToConstant: 34).isActive = true
         basketView.setTotalPrice(totalPrice)
+        basketView.onBasketTapped = {
+            print("ON BASKET TAPPED")
+            self.presenter.tappedBasket()
+        }
         let basketButtonItem = UIBarButtonItem(customView: basketView)
         navigationItem.rightBarButtonItem = basketButtonItem
         
