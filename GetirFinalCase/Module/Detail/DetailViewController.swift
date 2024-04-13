@@ -77,8 +77,6 @@ final class DetailViewController : BaseViewController {
     
     var presenter : DetailPresenterProtocol!
     
-    var basketView = BasketView()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -153,6 +151,11 @@ final class DetailViewController : BaseViewController {
 
 extension DetailViewController : DetailViewControllerProtocol {
     
+    func setupBarButtonItem(_ totalPrice: Double) {
+        
+    }
+    
+    
     func setProductImage(_ image: String) {
         self.productImageView.fetchImage(image, ._placeholder)
     }
@@ -169,18 +172,7 @@ extension DetailViewController : DetailViewControllerProtocol {
         self.productAttributeLabel.text = name
     }
     
-    func setupBarButtonItem(_ totalPrice: Double) {
-        if totalPrice > 0 {
-            basketView.widthAnchor.constraint(equalToConstant: 91).isActive = true
-            basketView.heightAnchor.constraint(equalToConstant: 34).isActive = true
-            basketView.setTotalPrice(totalPrice)
-            let basketButtonItem = UIBarButtonItem(customView: basketView)
-            navigationItem.rightBarButtonItem = basketButtonItem
-            showBarButtonItemWithAnimation()
-        } else {
-            hideBarButtonItemWithAnimation()
-        }
-    }
+
     
     func setupBottomView(_ isBasket: Bool) {
         
@@ -208,30 +200,6 @@ extension DetailViewController : DetailViewControllerProtocol {
     
     func setupStepperValue(_ count: Int) {
         self.stepperView.productCount = count
-    }
-    
-    
-    private func showBarButtonItemWithAnimation() {
-        guard let basketView = self.navigationItem.rightBarButtonItem?.customView else { return }
-        
-        basketView.transform = CGAffineTransform(translationX: basketView.frame.width, y: 0)
-        basketView.alpha = 0
-        
-        UIView.animate(withDuration: 0.7, animations: {
-            basketView.transform = .identity
-            basketView.alpha = 1
-        })
-    }
-    
-    private func hideBarButtonItemWithAnimation() {
-        guard let basketView = self.navigationItem.rightBarButtonItem?.customView else { return }
-        
-        UIView.animate(withDuration: 0.7, animations: {
-            basketView.transform = CGAffineTransform(translationX: basketView.frame.width, y: 0)
-            basketView.alpha = 0
-        }) { _ in
-            self.navigationItem.rightBarButtonItem = nil
-        }
     }
     
 }

@@ -10,6 +10,8 @@ import UIKit
 
 class BasketView : UIView {
     
+    var onBasketTapped: (() -> Void)?
+    
     let basketImageView: UIImageView = {
        let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
@@ -39,17 +41,20 @@ class BasketView : UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
+        setupTapGesture()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupViews()
+        setupTapGesture()
     }
     
     private func setupViews() {
         backgroundColor = .white
         layer.cornerRadius = 8
         layer.masksToBounds = true
+       
         
         addSubview(basketImageView)
         addSubview(backgroundTitleView)
@@ -69,6 +74,16 @@ class BasketView : UIView {
             
             totalPriceLabel.centerYAnchor.constraint(equalTo: backgroundTitleView.centerYAnchor)
         ])
+    }
+    
+    private func setupTapGesture() {
+            self.isUserInteractionEnabled = true
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(basketTappedAction))
+            self.addGestureRecognizer(tapGesture)
+        }
+    
+    @objc private func basketTappedAction() {
+        onBasketTapped?()
     }
     
     public func setTotalPrice(_ price: Double) {

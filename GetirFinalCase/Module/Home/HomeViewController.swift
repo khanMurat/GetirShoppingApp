@@ -83,43 +83,7 @@ final class HomeViewController: BaseViewController {
 }
 
 extension HomeViewController : HomeViewControllerProtocol {
-    
-    func setupBarButtonItem(_ totalPrice: Double) {
-        if totalPrice > 0 {
-            basketView.widthAnchor.constraint(equalToConstant: 91).isActive = true
-            basketView.heightAnchor.constraint(equalToConstant: 34).isActive = true
-            basketView.setTotalPrice(totalPrice)
-            let basketButtonItem = UIBarButtonItem(customView: basketView)
-            navigationItem.rightBarButtonItem = basketButtonItem
-            showBarButtonItemWithAnimation()
-        } else {
-            hideBarButtonItemWithAnimation()
-        }
-    }
-    
-    private func showBarButtonItemWithAnimation() {
-        guard let basketView = self.navigationItem.rightBarButtonItem?.customView else { return }
         
-        basketView.transform = CGAffineTransform(translationX: basketView.frame.width, y: 0)
-        basketView.alpha = 0
-        
-        UIView.animate(withDuration: 0.7, animations: {
-            basketView.transform = .identity
-            basketView.alpha = 1
-        })
-    }
-    
-    private func hideBarButtonItemWithAnimation() {
-        guard let basketView = self.navigationItem.rightBarButtonItem?.customView else { return }
-        
-        UIView.animate(withDuration: 0.7, animations: {
-            basketView.transform = CGAffineTransform(translationX: basketView.frame.width, y: 0)
-            basketView.alpha = 0
-        }) { _ in
-            self.navigationItem.rightBarButtonItem = nil
-        }
-    }
-    
     func reloadData() {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
@@ -157,6 +121,20 @@ extension HomeViewController : HomeViewControllerProtocol {
         
     }
     
+    func setupBarButtonItem(_ totalPrice: Double) {
+        
+        basketView.widthAnchor.constraint(equalToConstant: 91).isActive = true
+        basketView.heightAnchor.constraint(equalToConstant: 34).isActive = true
+        basketView.setTotalPrice(totalPrice)
+        let basketButtonItem = UIBarButtonItem(customView: basketView)
+        navigationItem.rightBarButtonItem = basketButtonItem
+
+        if totalPrice > 0 {
+            self.showBarButtonItemWithAnimation(basketView: basketView)
+        } else {
+            hideBarButtonItemWithAnimation(basketView: basketView)
+        }
+    }
 }
 
 extension HomeViewController : UICollectionViewDataSource {
