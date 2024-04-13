@@ -26,6 +26,5 @@ extension String {
     var removeWhiteSpace: String {
         return self.trimmingCharacters(in: .whitespacesAndNewlines)
     }
-    
 }
 
