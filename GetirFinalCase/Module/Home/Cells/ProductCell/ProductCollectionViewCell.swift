@@ -32,26 +32,29 @@ final class ProductCollectionViewCell: UICollectionViewCell {
         return iv
     }()
     
-    private let productNameLabel: UILabel = {
-        let lbl = UILabel()
-        lbl.font = .systemFont(ofSize: 12)
-        lbl.numberOfLines = 2
-        lbl.translatesAutoresizingMaskIntoConstraints = false
-        return lbl
-    }()
-    
     private let productPriceLabel: UILabel = {
         let lbl = UILabel()
         lbl.font = .systemFont(ofSize: 14, weight: .semibold)
         lbl.textColor = UIColor.color_purple
+        lbl.font = .sansBold14
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
     
+    private let productNameLabel: UILabel = {
+        let lbl = UILabel()
+        lbl.font = .systemFont(ofSize: 12)
+        lbl.numberOfLines = 2
+        lbl.font = .sansSemiBold12
+        lbl.textColor = .color_textDark
+        lbl.translatesAutoresizingMaskIntoConstraints = false
+        return lbl
+    }()
+        
     private let productAttributeLabel : UILabel = {
        let lbl = UILabel()
         lbl.textColor = .color_secondaryText
-        lbl.font = .systemFont(ofSize: 12, weight: .semibold)
+        lbl.font = .sansSemiBold12
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
@@ -83,6 +86,7 @@ final class ProductCollectionViewCell: UICollectionViewCell {
         lbl.font = .systemFont(ofSize: 12, weight: .semibold)
         lbl.textColor = .white
         lbl.text = "1"
+        lbl.font = .sansBold12
         lbl.textAlignment = .center
         lbl.backgroundColor = UIColor.color_purple
         lbl.translatesAutoresizingMaskIntoConstraints = false

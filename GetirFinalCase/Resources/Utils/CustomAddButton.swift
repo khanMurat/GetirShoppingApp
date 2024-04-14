@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class CustomAddButton : UIButton {
+final class CustomAddButton : UIButton {
     
     private var originalTitle : String?
     private var activityIndicator : UIActivityIndicatorView?

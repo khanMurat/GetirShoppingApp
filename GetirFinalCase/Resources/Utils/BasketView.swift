@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class BasketView : UIView {
+final class BasketView : UIView {
     
     var onBasketTapped: (() -> Void)?
     
@@ -31,9 +31,9 @@ class BasketView : UIView {
     let totalPriceLabel: UILabel = {
        let lbl = UILabel()
         lbl.text = "1,00"
-        lbl.textColor = .purple
+        lbl.textColor = .color_purple
         lbl.numberOfLines = 1
-        lbl.font = .systemFont(ofSize: 14, weight: .medium)
+        lbl.font = .sansBold12
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()

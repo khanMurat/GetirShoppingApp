@@ -35,7 +35,7 @@ final class DetailViewController : BaseViewController {
         let lbl = UILabel()
         lbl.textColor = .color_purple
         lbl.text = "₺140,75"
-        lbl.font = .systemFont(ofSize: 20)
+        lbl.font = .sansBold20
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
@@ -43,7 +43,8 @@ final class DetailViewController : BaseViewController {
     private let productNameLabel : UILabel = {
         let lbl = UILabel()
         lbl.text = "Fanta"
-        lbl.font = .systemFont(ofSize: 16)
+        lbl.font = .sansSemiBold16
+        lbl.textColor = .color_textDark
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
@@ -51,15 +52,14 @@ final class DetailViewController : BaseViewController {
     private let productAttributeLabel : UILabel = {
         let lbl = UILabel()
         lbl.text = "3X5"
-        lbl.font = .systemFont(ofSize: 12)
+        lbl.font = .sansSemiBold12
         lbl.textColor = .color_secondaryText
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
     
-    private let bottomTabView : UIView = {
-        let view = UIView()
-        view.backgroundColor = .color_lightGray
+    private let bottomTabView : CustomTabView = {
+        let view = CustomTabView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()

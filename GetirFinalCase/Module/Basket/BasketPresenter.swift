@@ -38,7 +38,7 @@ extension BasketPresenter : BasketPresenterProtocol {
     func viewdidLoad() {
         fetchBasketProducts()
         fetchSuggestedProducts()
-        view.setupCollectionView()
+        view.setupViews()
         view.showLeftBarButton()
     }
     

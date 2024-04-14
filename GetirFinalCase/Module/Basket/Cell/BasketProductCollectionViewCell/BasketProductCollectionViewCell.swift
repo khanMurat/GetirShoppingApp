@@ -23,48 +23,49 @@ final class BasketProductCollectionViewCell : UICollectionViewCell {
     
     private let productImageView : UIImageView = {
         let iv = UIImageView()
-        iv.contentMode = .scaleAspectFill
+        iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.image = #imageLiteral(resourceName: "getir-logo")
         iv.layer.cornerRadius = 16
         iv.layer.borderWidth = 1
-        iv.layer.borderColor = UIColor.color_secondaryText.cgColor
+        iv.layer.borderColor = UIColor.color_lightGray.cgColor
         return iv
     }()
     
     private let productNameLabel: UILabel = {
         let lbl = UILabel()
-        lbl.font = .systemFont(ofSize: 12)
-        lbl.numberOfLines = 0
+        lbl.font = .sansSemiBold12
+        lbl.numberOfLines = 2
+        lbl.textColor = .color_textDark
         lbl.text = "Name"
-        lbl.translatesAutoresizingMaskIntoConstraints = false
-        return lbl
-    }()
-    
-    private let productPriceLabel: UILabel = {
-        let lbl = UILabel()
-        lbl.font = .systemFont(ofSize: 14, weight: .semibold)
-        lbl.text = "14,35"
-        lbl.textColor = UIColor.color_purple
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
     
     private let productAttributeLabel : UILabel = {
        let lbl = UILabel()
-        lbl.textColor = .color_lightGray
+        lbl.textColor = .color_secondaryText
         lbl.text = "3x5"
-        lbl.font = .systemFont(ofSize: 12, weight: .semibold)
+        lbl.font = .sansSemiBold12
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
     
+    private let productPriceLabel: UILabel = {
+        let lbl = UILabel()
+        lbl.font = .sansBold14
+        lbl.text = "14,35"
+        lbl.textColor = UIColor.color_purple
+        lbl.translatesAutoresizingMaskIntoConstraints = false
+        return lbl
+    }()
+        
     private lazy var stackViewProductInformation : UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [self.productNameLabel, self.productPriceLabel, self.productAttributeLabel])
+        let stackView = UIStackView(arrangedSubviews: [self.productNameLabel, self.productAttributeLabel,self.productPriceLabel])
         stackView.axis = .vertical
         stackView.distribution = .equalSpacing
-        stackView.spacing = 4
+        stackView.spacing = 2
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()

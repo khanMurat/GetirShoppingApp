@@ -9,7 +9,7 @@ import UIKit
 
 protocol BasketViewControllerProtocol : AnyObject {
     func reloadData()
-    func setupCollectionView()
+    func setupViews()
     func showLoadingView()
     func hideLoadingView()
     func showLeftBarButton()
@@ -25,10 +25,16 @@ final class BasketViewController : BaseViewController {
         return collectionView
     }()
     
+    private let bottomTabView : CustomTabView = {
+        let view = CustomTabView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.viewdidLoad()
-        setupCollectionView()
+        setupViews()
     }
     
     //    deinit {
@@ -57,15 +63,21 @@ final class BasketViewController : BaseViewController {
         }
     }
     
-    func setupCollectionView() {
+    func setupViews() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(collectionView)
+        view.addSubview(bottomTabView)
         
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor,constant: -103),
+            
+            bottomTabView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            bottomTabView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            bottomTabView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            bottomTabView.heightAnchor.constraint(equalToConstant: 103)
         ])
         
         collectionView.delegate = self

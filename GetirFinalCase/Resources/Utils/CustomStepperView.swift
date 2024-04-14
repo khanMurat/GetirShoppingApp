@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 
-class CustomStepperView : UIView {
+final class CustomStepperView : UIView {
     
     var didIncrease: (() -> Void)?
     
@@ -40,7 +40,7 @@ class CustomStepperView : UIView {
        let lbl = UILabel()
         lbl.text = "1"
         lbl.textColor = .white
-        lbl.font = .systemFont(ofSize: 16)
+        lbl.font = .sansBold14
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()

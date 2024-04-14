@@ -54,4 +54,8 @@ extension UIColor {
     static var color_secondaryText : UIColor {
         return UIColor(hexString: "#697488")
     }
+    
+    static var color_textDark : UIColor {
+        return UIColor(hexString: "#191919")
+    }
 }

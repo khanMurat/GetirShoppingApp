@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class CustomAlertView : UIView {
+final class CustomAlertView : UIView {
     
     var didPressedNo: (() -> Void)?
     
