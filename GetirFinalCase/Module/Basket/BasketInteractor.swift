@@ -21,11 +21,13 @@ protocol BasketInteractorOutputProtocol : AnyObject {
     func fetchSuggestedProductsOutput(_ result : [SuggestedProduct])
     func fetchBasketProductsTotalPriceOutput(_ result : Double)
     func removeAllProductFromBasketOutput(_ result : Bool)
+    func checkBasketIsEmpty(_ result : Bool)
+    func setupError(_ result : Error)
 }
 
 final class BasketInteractor {
     
-    var output : BasketInteractorOutputProtocol?
+    weak var output : BasketInteractorOutputProtocol?
     
     private let disposeBag = DisposeBag()
     
@@ -45,6 +47,9 @@ extension BasketInteractor : BasketInteractorProtocol {
         self.output?.fetchBasketProductsOutput(basketProducts)
         self.output?.fetchBasketProductsTotalPriceOutput(basketItemsTotalPrice)
         
+        if basketItemsTotalPrice == 0 {
+            self.output?.checkBasketIsEmpty(true)
+        }
     }
     
     func fetchSuggestedProducts() {
@@ -52,7 +57,7 @@ extension BasketInteractor : BasketInteractorProtocol {
             .subscribe { [weak self] suggestedProduct in
                 self?.output?.fetchSuggestedProductsOutput(suggestedProduct[0].products ?? [])
             }onFailure: { error in
-                print(error)
+                self.output?.setupError(error)
             }.disposed(by: disposeBag)
     }
     

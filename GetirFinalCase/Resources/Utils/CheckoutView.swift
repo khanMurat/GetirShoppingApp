@@ -31,7 +31,6 @@ final class CheckoutView : UIView {
     private let totalAmountLabel : UILabel = {
       let lbl = UILabel()
         lbl.font = .sansBold20
-        lbl.text = "290"
         lbl.textColor = .color_purple
         lbl.textAlignment = .center
         lbl.translatesAutoresizingMaskIntoConstraints = false

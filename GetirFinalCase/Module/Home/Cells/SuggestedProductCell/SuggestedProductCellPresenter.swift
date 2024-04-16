@@ -7,9 +7,7 @@
 
 import Foundation
 
-protocol SuggestedProductCellPresenterProtocol : ProductActionProtocol {
-
-}
+protocol SuggestedProductCellPresenterProtocol : ProductActionProtocol {}
 
 final class SuggestedProductCellPresenter {
     

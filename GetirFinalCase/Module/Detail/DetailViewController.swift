@@ -15,6 +15,7 @@ protocol DetailViewControllerProtocol : AnyObject {
     func setProductAttribute(_ name : String)
     func setupView()
     func setupActions()
+    func setTitle(_ title: String)
     func setupBarButtonItem(_ totalPrice : Double)
     func setupBottomView(_ isBasket : Bool)
     func setupStepperValue(_ count : Int)
@@ -22,6 +23,8 @@ protocol DetailViewControllerProtocol : AnyObject {
 }
 
 final class DetailViewController : BaseViewController {
+    
+    //MARK: - Properties
     
     private let productImageView : UIImageView = {
         let iv = UIImageView()
@@ -34,7 +37,6 @@ final class DetailViewController : BaseViewController {
     private let productPriceLabel : UILabel = {
         let lbl = UILabel()
         lbl.textColor = .color_purple
-        lbl.text = "₺140,75"
         lbl.font = .sansBold20
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
@@ -42,8 +44,8 @@ final class DetailViewController : BaseViewController {
     
     private let productNameLabel : UILabel = {
         let lbl = UILabel()
-        lbl.text = "Fanta"
         lbl.font = .sansSemiBold16
+        lbl.numberOfLines = 0
         lbl.textColor = .color_textDark
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
@@ -51,7 +53,6 @@ final class DetailViewController : BaseViewController {
     
     private let productAttributeLabel : UILabel = {
         let lbl = UILabel()
-        lbl.text = "3X5"
         lbl.font = .sansSemiBold12
         lbl.textColor = .color_secondaryText
         lbl.translatesAutoresizingMaskIntoConstraints = false
@@ -80,9 +81,9 @@ final class DetailViewController : BaseViewController {
     
     let basketView = BasketView()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    //MARK: - Lifecycle
+    
+    override func viewWillAppear(_ animated: Bool) {
         presenter.viewdidLoad()
     }
     
@@ -90,9 +91,7 @@ final class DetailViewController : BaseViewController {
         presenter.removeNotifications()
     }
     
-    @objc func handleDissmiss(){
-        self.dismiss(animated: true)
-    }
+    //MARK: - Helpers
     
     func setupView() {
         view.backgroundColor = .white
@@ -113,17 +112,13 @@ final class DetailViewController : BaseViewController {
             productImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             productImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             productImageView.widthAnchor.constraint(equalToConstant: 200),
-            productImageView.heightAnchor.constraint(equalToConstant: 200)
-        ])
-        
-        NSLayoutConstraint.activate([
+            productImageView.heightAnchor.constraint(equalToConstant: 200),
+            
             stackView.topAnchor.constraint(equalTo: productImageView.bottomAnchor,constant: 16),
             stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            stackView.heightAnchor.constraint(equalToConstant: 71)
-        ])
-        
-        NSLayoutConstraint.activate([
+            stackView.heightAnchor.constraint(equalToConstant: 71),
+            
             bottomTabView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             bottomTabView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             bottomTabView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -145,6 +140,12 @@ final class DetailViewController : BaseViewController {
         }
     }
     
+    //MARK: - Actions
+    
+    @objc func handleDissmiss(){
+        self.dismiss(animated: true)
+    }
+    
     @objc private func didTapAddToBasket() {
         addToBasketButton.showLoading()
         
@@ -153,25 +154,11 @@ final class DetailViewController : BaseViewController {
             self.addToBasketButton.hideLoading()
         }
     }
-    
 }
 
-extension DetailViewController : DetailViewControllerProtocol {
+//MARK: - DetailViewControllerProtocol
 
-    func setupBarButtonItem(_ totalPrice: Double) {
-        
-        basketView.widthAnchor.constraint(equalToConstant: 91).isActive = true
-        basketView.heightAnchor.constraint(equalToConstant: 34).isActive = true
-        basketView.setTotalPrice(totalPrice)
-        let basketButtonItem = UIBarButtonItem(customView: basketView)
-        navigationItem.rightBarButtonItem = basketButtonItem
-        
-        if totalPrice > 0 {
-            self.showBarButtonItemWithAnimation(basketView: basketView)
-        } else {
-            hideBarButtonItemWithAnimation(basketView: basketView)
-        }
-    }
+extension DetailViewController : DetailViewControllerProtocol {
     
     func setProductImage(_ image: String) {
         self.productImageView.fetchImage(image, ._placeholder)
@@ -189,7 +176,27 @@ extension DetailViewController : DetailViewControllerProtocol {
         self.productAttributeLabel.text = name
     }
     
-
+    func setupBarButtonItem(_ totalPrice: Double) {
+        
+        basketView.widthAnchor.constraint(equalToConstant: 91).isActive = true
+        basketView.heightAnchor.constraint(equalToConstant: 34).isActive = true
+        basketView.setTotalPrice(totalPrice)
+        basketView.onBasketTapped = {
+            self.presenter.tappedBasket()
+        }
+        let basketButtonItem = UIBarButtonItem(customView: basketView)
+        navigationItem.rightBarButtonItem = basketButtonItem
+        
+        if totalPrice > 0 {
+            self.showBarButtonItemWithAnimation(basketView: basketView)
+        } else {
+            hideBarButtonItemWithAnimation(basketView: basketView)
+        }
+    }
+    
+    func setTitle(_ title: String) {
+        self.title = title
+    }
     
     func setupBottomView(_ isBasket: Bool) {
         

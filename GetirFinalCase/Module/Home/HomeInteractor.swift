@@ -20,11 +20,12 @@ protocol HomeInteractorOutputProtocol : AnyObject {
     func fetchHorizontalProductsOutput(result : [SuggestedProduct])
     func fetchVerticalProductsOutput(result : [Product])
     func fetchBasketProductsOutput(result: Double)
+    func setupError(_ result: Error)
 }
 
 final class HomeInteractor {
     
-    var output : HomeInteractorOutputProtocol?
+    weak var output : HomeInteractorOutputProtocol?
     
     private let disposeBag = DisposeBag()
     
@@ -43,7 +44,7 @@ extension HomeInteractor : HomeInteractorProtocol {
             .subscribe { [weak self] suggestedProduct in
                 self?.output?.fetchHorizontalProductsOutput(result: suggestedProduct[0].products ?? [])
             }onFailure: { error in
-                print(error)
+                self.output?.setupError(error)
             }.disposed(by: disposeBag)
     }
     
@@ -52,7 +53,7 @@ extension HomeInteractor : HomeInteractorProtocol {
             .subscribe { [weak self] product in
                 self?.output?.fetchVerticalProductsOutput(result: product[0].products ?? [])
             }onFailure: { error in
-                print(error)
+                self.output?.setupError(error)
             }.disposed(by: disposeBag)
     }
     

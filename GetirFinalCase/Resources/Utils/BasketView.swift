@@ -30,7 +30,6 @@ final class BasketView : UIView {
     
     let totalPriceLabel: UILabel = {
        let lbl = UILabel()
-        lbl.text = "1,00"
         lbl.textColor = .color_purple
         lbl.numberOfLines = 1
         lbl.font = .sansBold12

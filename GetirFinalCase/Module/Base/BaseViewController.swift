@@ -15,13 +15,13 @@ class BaseViewController: UIViewController,LoadingShowable {
     
     //MARK: - Lifecycle
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         navBarStyle()
     }
     
+    //MARK: - Show System Alert
     
     func showAlert(title:String,message:String) {
         
@@ -36,6 +36,8 @@ class BaseViewController: UIViewController,LoadingShowable {
         }
     }
     
+    //MARK: - Dissmiss Left Bar Button
+    
     func showDismissBarButton(){
         
         let leftBarButton = UIBarButtonItem(image: UIImage(systemName: "xmark")?.withTintColor(.white, renderingMode: .alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
@@ -43,6 +45,15 @@ class BaseViewController: UIViewController,LoadingShowable {
         navigationItem.leftBarButtonItem = leftBarButton
     }
     
+    //MARK: - Trash Right Bar Button
+    
+    func showTrashBarButton(action:Selector?=nil){
+        let rightBarButton = UIBarButtonItem(image: ._trash, style: .plain, target: self, action:action)
+        
+        navigationItem.rightBarButtonItem = rightBarButton
+    }
+    
+    //MARK: - Animation For Custom Bar Button
 
     func showBarButtonItemWithAnimation(basketView:BasketView) {
         guard let basketView = self.navigationItem.rightBarButtonItem?.customView else { return }
@@ -56,6 +67,8 @@ class BaseViewController: UIViewController,LoadingShowable {
         })
     }
     
+    //MARK: - Animation For Custom Bar Button
+    
     func hideBarButtonItemWithAnimation(basketView:BasketView) {
         guard let basketView = self.navigationItem.rightBarButtonItem?.customView else { return }
         
@@ -66,6 +79,8 @@ class BaseViewController: UIViewController,LoadingShowable {
             self.navigationItem.rightBarButtonItem = nil
         }
     }
+    
+    //MARK: - NavigationController Style
     
     func navBarStyle(){
         
@@ -78,9 +93,9 @@ class BaseViewController: UIViewController,LoadingShowable {
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.compactAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        
-        self.title = "Ürünler"
     }
+    
+    //MARK: - Present Custom Alert View
     
     func presentCustomAlert(message: String,noAction: (() -> Void)? = nil, yesAction: (() -> Void)? = nil) {
         let alertView = CustomAlertView()
@@ -116,6 +131,8 @@ class BaseViewController: UIViewController,LoadingShowable {
         }
     }
     
+    //MARK: - Action for custom alert
+    
     func dismissCustomAlert() {
         DispatchQueue.main.async {
             guard let alertView = self.customAlertView else { return }
@@ -127,6 +144,8 @@ class BaseViewController: UIViewController,LoadingShowable {
             })
         }
     }
+    
+    //MARK: - Action for left bar button
     
     @objc func handleDismiss(){
         self.dismiss(animated: true)

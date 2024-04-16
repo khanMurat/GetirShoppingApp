@@ -12,11 +12,17 @@ protocol BasketViewControllerProtocol : AnyObject {
     func setupViews()
     func showLoadingView()
     func hideLoadingView()
+    func setTitle(_ title: String)
     func showLeftBarButton()
+    func showRightBarButton()
     func setupCheckoutView(_ totalPrice: Double)
+    func checkBasketIsEmpty()
+    func showError(_ message:String)
 }
 
 final class BasketViewController : BaseViewController {
+    
+    //MARK: - Properties
     
     var presenter : BasketPresenterProtocol!
     
@@ -38,33 +44,56 @@ final class BasketViewController : BaseViewController {
         return view
     }()
     
+    //MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.viewdidLoad()
-        setupViews()
     }
     
     deinit {
         presenter.removeNotifications()
     }
     
+    //MARK: - Helpers
+    
     private func createLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { (sectionNumber, env) -> NSCollectionLayoutSection? in
             if sectionNumber == 0 {
-                let item = CompositionalLayout.createItem(width: .fractionalWidth(1), height: .absolute(86), spacing: 8)
-                let group = CompositionalLayout.createGroup(alignment: .vertical, width: .fractionalWidth(1), height: .estimated(374), items : [item])
+                let item = CompositionalLayout.createItem(width: .fractionalWidth(1),
+                                                          height: .absolute(86),
+                                                          spacing: 8)
+                
+                let group = CompositionalLayout.createGroup(alignment: .vertical,
+                                                            width: .fractionalWidth(1),
+                                                            height: .estimated(374),
+                                                            items : [item])
+                
                 let section = NSCollectionLayoutSection(group: group)
+                
                 section.supplementariesFollowContentInsets = false
+                
                 return section
+                
             } else if sectionNumber == 1 {
                 
-                let item = CompositionalLayout.createItem(width: .fractionalWidth(0.33), height: .fractionalHeight(1), spacing: 8)
-                let group = CompositionalLayout.createGroup(alignment: .horizontal, width: .fractionalWidth(1), height: .absolute(185), items : [item])
+                let item = CompositionalLayout.createItem(width: .fractionalWidth(0.33),
+                                                          height: .fractionalHeight(1),
+                                                          spacing: 8)
+                
+                let group = CompositionalLayout.createGroup(alignment: .horizontal,
+                                                            width: .fractionalWidth(1),
+                                                            height: .absolute(185),
+                                                            items : [item])
+                
                 let section = NSCollectionLayoutSection(group: group)
+                
                 section.orthogonalScrollingBehavior = .continuous
+                
                 section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
                 
                 section.supplementariesFollowContentInsets = false
+                
                 return section
             }
             return nil
@@ -105,10 +134,20 @@ final class BasketViewController : BaseViewController {
     private func supplementaryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
         .init(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(48)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
     }
+    
+    //MARK: - Actions
+    
+    @objc func handleTrashButton(){
+        self.presentCustomAlert(message: "Sepeti boşaltmak istediğinizden emin misiniz ?",yesAction: {
+            self.presenter.removeAllProduct()
+        })
+    }
 }
 
+//MARK: - BasketViewControllerProtocol
+
 extension BasketViewController : BasketViewControllerProtocol {
-    
+
     func reloadData() {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
@@ -123,8 +162,16 @@ extension BasketViewController : BasketViewControllerProtocol {
         self.hideLoading()
     }
     
+    func setTitle(_ title: String) {
+        self.title = title
+    }
+    
     func showLeftBarButton() {
         self.showDismissBarButton()
+    }
+    
+    func showRightBarButton() {
+        self.showTrashBarButton(action: #selector(handleTrashButton))
     }
     
     func setupCheckoutView(_ totalPrice: Double) {
@@ -136,13 +183,23 @@ extension BasketViewController : BasketViewControllerProtocol {
             })
         }
     }
+    
+    func checkBasketIsEmpty() {
+        self.presenter.checkBasketIsEmpty()
+    }
+    
+    func showError(_ message: String) {
+        self.showAlert(title: "Error", message: message)
+    }
 }
+
+//MARK: - UICollectionViewDataSource
 
 extension BasketViewController : UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         
-        return 2
+        presenter.numberOfSections()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -166,6 +223,7 @@ extension BasketViewController : UICollectionViewDataSource {
             return cell
         case 1:
             let cell = collectionView.dequeueReusableCell(with: ProductCollectionViewCell.self, for: indexPath)
+            
             if let product = presenter.suggestedProduct(indexPath.row) {
                 cell.suggestedCellPresenter = SuggestedProductCellPresenter(view: cell, suggestedProduct: product)
             }
@@ -175,6 +233,8 @@ extension BasketViewController : UICollectionViewDataSource {
         }
     }
 }
+
+//MARK: - UICollectionViewDelegate
 
 extension BasketViewController : UICollectionViewDelegate {
     

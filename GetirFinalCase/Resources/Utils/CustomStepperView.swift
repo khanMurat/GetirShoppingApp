@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 
-
 final class CustomStepperView : UIView {
     
     var didIncrease: (() -> Void)?
@@ -38,7 +37,6 @@ final class CustomStepperView : UIView {
     
     private let counterLabel : UILabel = {
        let lbl = UILabel()
-        lbl.text = "1"
         lbl.textColor = .white
         lbl.font = .sansBold14
         lbl.translatesAutoresizingMaskIntoConstraints = false
@@ -76,6 +74,8 @@ final class CustomStepperView : UIView {
         stackView.alignment = .fill
         stackView.layer.borderWidth = 1
         stackView.layer.borderColor = UIColor.color_lightGray.cgColor
+        stackView.layer.cornerRadius = 10
+        stackView.layer.masksToBounds = true
         stackView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(stackView)
 

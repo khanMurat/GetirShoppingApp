@@ -216,7 +216,6 @@
 		FB504B042BC6BE0000AC1AED /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				FBB67A662BC7492C009E8199 /* ReusableHeader */,
 				FB6E35172BC736E9002F2ECD /* ProductCell */,
 				FB504B052BC6BE2D00AC1AED /* SuggestedProductCell */,
 			);
@@ -463,13 +462,6 @@
 				FBAD0D592BCAA3F900546807 /* BasketCellPresenter.swift */,
 			);
 			path = BasketProductCollectionViewCell;
-			sourceTree = "<group>";
-		};
-		FBB67A662BC7492C009E8199 /* ReusableHeader */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ReusableHeader;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -9,6 +9,7 @@ import Foundation
 
 protocol HomePresenterProtocol : AnyObject {
     func viewdidLoad()
+    func numberOfSections() -> Int
     func numberOfHorizontalItems() -> Int
     func numberOfVerticalItems() -> Int
     func horizontalProduct(_ index : Int) -> SuggestedProduct?
@@ -44,7 +45,12 @@ extension HomePresenter : HomePresenterProtocol {
         fetchTotalBasketPrice()
         setupNotifications()
         view.setupCollectionView()
+        view.setTitle("Ürünler")
         view.setupBarButtonItem(totalPrice)
+    }
+    
+    func numberOfSections() -> Int {
+        return 2
     }
     
     func numberOfHorizontalItems() -> Int {
@@ -104,7 +110,7 @@ extension HomePresenter : HomePresenterProtocol {
 }
 
 extension HomePresenter : HomeInteractorOutputProtocol {
-    
+
     func fetchHorizontalProductsOutput(result: [SuggestedProduct]) {
         self.horizontalProduct = result
         self.view.reloadData()
@@ -119,5 +125,9 @@ extension HomePresenter : HomeInteractorOutputProtocol {
     func fetchBasketProductsOutput(result: Double) {
         self.totalPrice = result
         self.view.setupBarButtonItem(totalPrice)
+    }
+    
+    func setupError(_ result: any Error) {
+        self.view.showError(result.localizedDescription)
     }
 }

@@ -29,16 +29,15 @@ protocol DetailInteractorOutputProtocol : AnyObject {
 
 final class DetailInteractor {
     
-    var output : DetailInteractorOutputProtocol?
+    weak var output : DetailInteractorOutputProtocol?
     
     @objc private func basketChanged() {
         fetchBasketProducts()
     }
-    
 }
 
 extension DetailInteractor : DetailInteractorProtocol {
-
+    
     func fetchBasketProducts() {
         let basketItems = ProductRepository.shared.getAllBasketItems()
         

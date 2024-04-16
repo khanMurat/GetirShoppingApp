@@ -13,6 +13,7 @@ protocol DetailPresenterProtocol : AnyObject {
     func removeProductFromBasket()
     func removeNotifications()
     func productCheckForBasket()
+    func tappedBasket()
     func fetchProductCount()
 }
 
@@ -42,12 +43,12 @@ extension DetailPresenter : DetailPresenterProtocol {
     func viewdidLoad() {
         
         if let product = product {
-            view.setProductImage(product.imageURL ?? "")
+            view.setProductImage(product.imageURL ?? product.thumbnailURL ?? "")
             view.setProductName(product.name ?? "")
             view.setProductPrice(product.priceText ?? "")
             view.setProductAttribute(product.attribute ?? product.shortDescription ?? "")
         } else if let suggestedProduct = suggestedProduct {
-            view.setProductImage(suggestedProduct.imageURL ?? "")
+            view.setProductImage(suggestedProduct.imageURL ?? suggestedProduct.squareThumbnailURL ?? "")
             view.setProductName(suggestedProduct.name ?? "")
             view.setProductPrice(suggestedProduct.priceText ?? "")
             view.setProductAttribute(suggestedProduct.shortDescription ?? "")
@@ -55,6 +56,7 @@ extension DetailPresenter : DetailPresenterProtocol {
         view.setupView()
         view.setupActions()
         view.showLeftBarButton()
+        view.setTitle("Ürün Detayı")
         fetchTotalBasketPrice()
         setupNotifications()
         productCheckForBasket()
@@ -114,6 +116,10 @@ extension DetailPresenter : DetailPresenterProtocol {
            interactor.checkProductCount(productID: suggestedProduct.id ?? "")
        }
    }
+    
+    func tappedBasket() {
+        router.navigate(.basketView)
+    }
     
     private func fetchTotalBasketPrice(){
         interactor.fetchBasketProducts()

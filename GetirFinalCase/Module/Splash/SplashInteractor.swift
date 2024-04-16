@@ -20,7 +20,7 @@ protocol SplashInteractorOutputProtocol : AnyObject {
 
 final class SplashInteractor {
     
-    var output : SplashInteractorOutputProtocol?
+    weak var output : SplashInteractorOutputProtocol?
     
 }
 
@@ -38,5 +38,4 @@ extension SplashInteractor : SplashInteractorProtocol {
         
         self.output?.internetConnection(status: internetStatus)
     }
-    
 }

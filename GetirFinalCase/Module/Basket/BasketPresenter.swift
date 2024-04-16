@@ -9,8 +9,10 @@ import Foundation
 
 protocol BasketPresenterProtocol : AnyObject {
     func viewdidLoad()
+    func numberOfSections() -> Int
     func numberOfSuggestedItems() -> Int
     func numberOfBasketItems() -> Int
+    func checkBasketIsEmpty()
     func suggestedProduct(_ index : Int) -> SuggestedProduct?
     func basketProduct(_ index : Int) -> RealmProduct?
     func removeAllProduct()
@@ -40,9 +42,15 @@ extension BasketPresenter : BasketPresenterProtocol {
         fetchBasketProducts()
         fetchSuggestedProducts()
         view.setupViews()
+        view.setTitle("Sepetim")
         view.showLeftBarButton()
+        view.showRightBarButton()
         setupNotifications()
         view.setupCheckoutView(totalPrice)
+    }
+    
+    func numberOfSections() -> Int {
+        return 2
     }
     
     func numberOfSuggestedItems() -> Int {
@@ -51,6 +59,12 @@ extension BasketPresenter : BasketPresenterProtocol {
     
     func numberOfBasketItems() -> Int {
         return basketProducts.count
+    }
+    
+    func checkBasketIsEmpty() {
+        if basketProducts.isEmpty {
+            self.router.navigate(.homeView)
+        }
     }
     
     func suggestedProduct(_ index: Int) -> SuggestedProduct? {
@@ -84,7 +98,7 @@ extension BasketPresenter : BasketPresenterProtocol {
 }
 
 extension BasketPresenter : BasketInteractorOutputProtocol {
-    
+
     func fetchBasketProductsOutput(_ result: [RealmProduct]) {
         self.basketProducts = result
         self.view.reloadData()
@@ -98,6 +112,7 @@ extension BasketPresenter : BasketInteractorOutputProtocol {
     
     func fetchBasketProductsTotalPriceOutput(_ result: Double) {
         self.totalPrice = result
+        self.view.setupCheckoutView(result)
     }
     
     func removeAllProductFromBasketOutput(_ result: Bool) {
@@ -106,5 +121,15 @@ extension BasketPresenter : BasketInteractorOutputProtocol {
                 self.router.navigate(.homeView)
             }
         }
+    }
+    
+    func checkBasketIsEmpty(_ result: Bool) {
+        if result {
+            self.view.checkBasketIsEmpty()
+        }
+    }
+    
+    func setupError(_ result: any Error) {
+        self.view.showError(result.localizedDescription)
     }
 }

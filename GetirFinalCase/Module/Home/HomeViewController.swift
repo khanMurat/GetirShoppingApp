@@ -12,8 +12,9 @@ protocol HomeViewControllerProtocol : AnyObject {
     func setupCollectionView()
     func showLoadingView()
     func hideLoadingView()
-    func showError(_ message:String)
+    func setTitle(_ title: String)
     func setupBarButtonItem(_ totalPrice : Double)
+    func showError(_ message:String)
 }
 
 final class HomeViewController: BaseViewController {
@@ -46,6 +47,8 @@ final class HomeViewController: BaseViewController {
         presenter.removeNotifications()
     }
     
+    //MARK: - Helpers
+    
     private func createLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { (sectionNumber, env) -> NSCollectionLayoutSection? in
             if sectionNumber == 0 {
@@ -73,6 +76,8 @@ final class HomeViewController: BaseViewController {
         .init(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(25)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
     }
 }
+
+//MARK: - HomeViewControllerProtocol
 
 extension HomeViewController : HomeViewControllerProtocol {
     
@@ -109,8 +114,8 @@ extension HomeViewController : HomeViewControllerProtocol {
         self.hideLoading()
     }
     
-    func showError(_ message: String) {
-        
+    func setTitle(_ title: String) {
+        self.title = title
     }
     
     func setupBarButtonItem(_ totalPrice: Double) {
@@ -130,13 +135,18 @@ extension HomeViewController : HomeViewControllerProtocol {
             hideBarButtonItemWithAnimation(basketView: basketView)
         }
     }
+    
+    func showError(_ message: String) {
+        self.showAlert(title: "Error", message: message)
+    }
 }
+
+//MARK: - UICollectionViewDataSource
 
 extension HomeViewController : UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        
-        return 2
+        presenter.numberOfSections()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -171,6 +181,8 @@ extension HomeViewController : UICollectionViewDataSource {
         }
     }
 }
+
+//MARK: - UICollectionViewDelegate
 
 extension HomeViewController : UICollectionViewDelegate {
     

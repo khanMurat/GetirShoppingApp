@@ -13,10 +13,10 @@ enum DetailRoutes {
 }
 
 protocol DetailRouterProtocol : AnyObject {
-    //    func navigate(_ route : DetailRoutes)
+    func navigate(_ route : DetailRoutes)
 }
 
-final class DetailRouter: DetailRouterProtocol {
+final class DetailRouter {
     
     weak var viewController : DetailViewController?
     
@@ -43,12 +43,19 @@ final class DetailRouter: DetailRouterProtocol {
         let presenter = DetailPresenter(view: view, router: router, interactor: interactor, suggestedProduct: suggestedProduct, product: nil)
         view.presenter = presenter
         interactor.output = presenter
-        
+        router.viewController = view
         return view
     }
-    
 }
 
-extension SplashRouter : DetailRouterProtocol {
-    
+extension DetailRouter : DetailRouterProtocol {
+    func navigate(_ route: DetailRoutes) {
+        switch route {
+        case .basketView:
+            let basketVC = BasketRouter.createModule()
+            let nav = UINavigationController(rootViewController: basketVC)
+            nav.modalPresentationStyle = .fullScreen
+            viewController?.present(nav, animated: true)
+        }
+    }
 }

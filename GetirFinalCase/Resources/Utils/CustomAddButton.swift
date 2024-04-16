@@ -81,5 +81,4 @@ final class CustomAddButton : UIButton {
                                                    constant: 0)
         addConstraints([xCenterConstraint, yCenterConstraint])
     }
-    
 }
