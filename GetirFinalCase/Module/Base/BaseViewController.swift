@@ -97,10 +97,11 @@ class BaseViewController: UIViewController,LoadingShowable {
     
     //MARK: - Present Custom Alert View
     
-    func presentCustomAlert(message: String,noAction: (() -> Void)? = nil, yesAction: (() -> Void)? = nil) {
+    func presentCustomAlert(message: String,noAction: (() -> Void)? = nil, yesAction: (() -> Void)? = nil,noButtonHidden : Bool? = nil,yesButtonTitle : String? = nil) {
         let alertView = CustomAlertView()
         alertView.messageLabel.text = message
-        
+        alertView.isNoButtonHidden = noButtonHidden ?? false
+        alertView.setYesButtonTitle(yesButtonTitle ?? "Evet")
         
         alertView.didPressedNo = {
             noAction?()

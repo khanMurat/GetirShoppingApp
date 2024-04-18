@@ -16,6 +16,7 @@ protocol BasketPresenterProtocol : AnyObject {
     func suggestedProduct(_ index : Int) -> SuggestedProduct?
     func basketProduct(_ index : Int) -> RealmProduct?
     func removeAllProduct()
+    func checkOutProduct()
     func removeNotifications()
 }
 
@@ -79,6 +80,10 @@ extension BasketPresenter : BasketPresenterProtocol {
         interactor.removeAllProductFromBasket()
     }
     
+    func checkOutProduct() {
+        interactor.checkOutProducts()
+    }
+    
     func removeNotifications() {
         interactor.removeNotifications()
     }
@@ -95,10 +100,21 @@ extension BasketPresenter : BasketPresenterProtocol {
     private func setupNotifications(){
         interactor.setupNotifications()
     }
+    
+    private func showOrderCompletionAlert() {
+        self.view.presentCustomAlert(
+            message: "Siparişiniz başarıyla oluşturulmuştur.",
+            yesAction: {
+                self.router.navigate(.homeView)
+            },
+            noButtonHidden: true,
+            yesButtonTitle: "Tamam"
+        )
+    }
 }
 
 extension BasketPresenter : BasketInteractorOutputProtocol {
-
+    
     func fetchBasketProductsOutput(_ result: [RealmProduct]) {
         self.basketProducts = result
         self.view.reloadData()
@@ -119,6 +135,14 @@ extension BasketPresenter : BasketInteractorOutputProtocol {
         if result{
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.router.navigate(.homeView)
+            }
+        }
+    }
+    
+    func checkOutProductsOutput(_ result: Bool) {
+        if result{
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.showOrderCompletionAlert()
             }
         }
     }

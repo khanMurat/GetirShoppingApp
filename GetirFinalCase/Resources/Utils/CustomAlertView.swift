@@ -14,6 +14,15 @@ final class CustomAlertView : UIView {
     
     var didPressedYes: (() -> Void)?
     
+    var isNoButtonHidden: Bool {
+        get {
+            return noButton.isHidden
+        }
+        set {
+            noButton.isHidden = newValue
+        }
+    }
+    
     let backgroundView : UIView = {
         let bg = UIView()
         bg.backgroundColor = UIColor.black.withAlphaComponent(0.4)
@@ -43,7 +52,7 @@ final class CustomAlertView : UIView {
         let button = UIButton(type: .system)
         button.setTitle("Hayır", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .color_lightGray
+        button.backgroundColor = .color_secondaryText
         button.layer.cornerRadius = 10
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -116,5 +125,9 @@ final class CustomAlertView : UIView {
     
     @objc func yesButtonTapped() {
         didPressedYes?()
+    }
+    
+    func setYesButtonTitle(_ title: String) {
+        yesButton.setTitle(title, for: .normal)
     }
 }

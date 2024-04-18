@@ -12,6 +12,7 @@ protocol BasketInteractorProtocol : AnyObject {
     func fetchBasketProducts()
     func fetchSuggestedProducts()
     func removeAllProductFromBasket()
+    func checkOutProducts()
     func setupNotifications()
     func removeNotifications()
 }
@@ -21,6 +22,7 @@ protocol BasketInteractorOutputProtocol : AnyObject {
     func fetchSuggestedProductsOutput(_ result : [SuggestedProduct])
     func fetchBasketProductsTotalPriceOutput(_ result : Double)
     func removeAllProductFromBasketOutput(_ result : Bool)
+    func checkOutProductsOutput(_ result : Bool)
     func checkBasketIsEmpty(_ result : Bool)
     func setupError(_ result : Error)
 }
@@ -37,7 +39,7 @@ final class BasketInteractor {
 }
 
 extension BasketInteractor : BasketInteractorProtocol {
-    
+
     func fetchBasketProducts() {
         let basketProducts = ProductRepository.shared.getAllBasketItems()
         
@@ -64,6 +66,12 @@ extension BasketInteractor : BasketInteractorProtocol {
     func removeAllProductFromBasket() {
         ProductRepository.shared.clearBasket { isSuccess in
             self.output?.removeAllProductFromBasketOutput(isSuccess)
+        }
+    }
+    
+    func checkOutProducts() {
+        ProductRepository.shared.clearBasket { isSuccess in
+            self.output?.checkOutProductsOutput(isSuccess)
         }
     }
     

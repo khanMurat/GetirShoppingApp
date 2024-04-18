@@ -59,6 +59,5 @@ extension UICollectionView {
         
         return footer
     }
-    
 }
 

@@ -179,7 +179,7 @@ extension BasketViewController : BasketViewControllerProtocol {
         self.checkOutView.totalPrice = totalPrice
         self.checkOutView.didPressCheckoutButton = {[weak self] in
             self?.presentCustomAlert(message: "Toplam fiyatı \(total) olan ürünler için siparişi tamamlamak istiyor musun?",yesAction: {
-                self?.presenter.removeAllProduct()
+                self?.presenter.checkOutProduct()
             })
         }
     }

@@ -30,7 +30,7 @@ extension BasketProductCellPresenter : BasketProductCellPresenterProtocol {
         self.view?.setProductPriceText(basketProduct.priceText ?? "")
         self.view?.setProductAttribute(basketProduct.attribute ?? basketProduct.shortDescription ?? "")
         self.view?.setProductImage(basketProduct.imageURL ?? basketProduct.thumbnailURL)
-        self.view?.setSquareThumbnailImage(basketProduct.thumbnailURL ?? basketProduct.imageURL)
+        self.view?.setSquareThumbnailImage(basketProduct.squareThumbnailURL ?? basketProduct.imageURL)
         self.view?.setProductBasketCount(checkProductCount())
     }
     
