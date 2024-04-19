@@ -27,20 +27,23 @@ final class SplashViewController: BaseViewController {
     
     var presenter : SplashPresenterProtocol!
     
+    //MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         presenter.viewDidAppear()
     }
-    
 }
+
+//MARK: - SplashViewControllerProtocol
 
 extension SplashViewController : SplashViewControllerProtocol {
     
     func setupView() {
         view.backgroundColor = .white
         view.addSubview(logoImageView)
-
+        
     }
     
     func setupConstraints(){
@@ -56,6 +59,6 @@ extension SplashViewController : SplashViewControllerProtocol {
     
     func noInternetConnection() {
         self.showAlert(title: "Error", message: "No internet connection!")
-
+        
     }
 }

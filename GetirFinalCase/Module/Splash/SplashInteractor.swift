@@ -17,13 +17,11 @@ protocol SplashInteractorOutputProtocol : AnyObject {
 }
 
 
-
 final class SplashInteractor {
     
     weak var output : SplashInteractorOutputProtocol?
     
 }
-
 
 extension SplashInteractor : SplashInteractorProtocol {
     func checkInternetConnection() {

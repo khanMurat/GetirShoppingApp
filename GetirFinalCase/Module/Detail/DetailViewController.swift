@@ -109,7 +109,7 @@ final class DetailViewController : BaseViewController {
         
         
         NSLayoutConstraint.activate([
-            productImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            productImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 16),
             productImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             productImageView.widthAnchor.constraint(equalToConstant: 200),
             productImageView.heightAnchor.constraint(equalToConstant: 200),
@@ -117,7 +117,7 @@ final class DetailViewController : BaseViewController {
             stackView.topAnchor.constraint(equalTo: productImageView.bottomAnchor,constant: 16),
             stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            stackView.heightAnchor.constraint(equalToConstant: 71),
+            stackView.heightAnchor.constraint(equalToConstant: 87),
             
             bottomTabView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             bottomTabView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -178,8 +178,6 @@ extension DetailViewController : DetailViewControllerProtocol {
     
     func setupBarButtonItem(_ totalPrice: Double) {
         
-        basketView.widthAnchor.constraint(equalToConstant: 91).isActive = true
-        basketView.heightAnchor.constraint(equalToConstant: 34).isActive = true
         basketView.setTotalPrice(totalPrice)
         basketView.onBasketTapped = {
             self.presenter.tappedBasket()
@@ -188,6 +186,8 @@ extension DetailViewController : DetailViewControllerProtocol {
         navigationItem.rightBarButtonItem = basketButtonItem
         
         if totalPrice > 0 {
+            basketView.widthAnchor.constraint(equalToConstant: 91).isActive = true
+            basketView.heightAnchor.constraint(equalToConstant: 34).isActive = true
             self.showBarButtonItemWithAnimation(basketView: basketView)
         } else {
             hideBarButtonItemWithAnimation(basketView: basketView)

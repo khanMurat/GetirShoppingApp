@@ -105,7 +105,6 @@ extension HomeViewController : HomeViewControllerProtocol {
         collectionView.registerHeader(viewType: CollectionViewHeaderReusableView.self)
     }
     
-    
     func showLoadingView() {
         self.showLoading()
     }

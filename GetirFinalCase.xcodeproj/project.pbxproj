@@ -57,6 +57,10 @@
 		FB6B7B492BC59C7D00044824 /* ProductService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6B7B482BC59C7D00044824 /* ProductService.swift */; };
 		FB6B7B4B2BC59CAD00044824 /* ProductService+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6B7B4A2BC59CAD00044824 /* ProductService+Extension.swift */; };
 		FB6E35192BC73707002F2ECD /* ProductCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6E35182BC73707002F2ECD /* ProductCellPresenter.swift */; };
+		FB7083662BD328EB0036C4FE /* MockBasketRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7083652BD328EB0036C4FE /* MockBasketRouter.swift */; };
+		FB7083682BD329740036C4FE /* MockBasketInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7083672BD329740036C4FE /* MockBasketInteractor.swift */; };
+		FB70836A2BD32A200036C4FE /* MockBasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7083692BD32A200036C4FE /* MockBasketViewController.swift */; };
+		FB70836C2BD32AB30036C4FE /* MockBasketPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB70836B2BD32AB30036C4FE /* MockBasketPresenter.swift */; };
 		FBAD0D4E2BCA9DB600546807 /* BasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAD0D4D2BCA9DB600546807 /* BasketViewController.swift */; };
 		FBAD0D502BCA9DC600546807 /* BasketInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAD0D4F2BCA9DC600546807 /* BasketInteractor.swift */; };
 		FBAD0D522BCA9DCE00546807 /* BasketPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAD0D512BCA9DCE00546807 /* BasketPresenter.swift */; };
@@ -145,6 +149,10 @@
 		FB6B7B482BC59C7D00044824 /* ProductService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductService.swift; sourceTree = "<group>"; };
 		FB6B7B4A2BC59CAD00044824 /* ProductService+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductService+Extension.swift"; sourceTree = "<group>"; };
 		FB6E35182BC73707002F2ECD /* ProductCellPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCellPresenter.swift; sourceTree = "<group>"; };
+		FB7083652BD328EB0036C4FE /* MockBasketRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBasketRouter.swift; sourceTree = "<group>"; };
+		FB7083672BD329740036C4FE /* MockBasketInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBasketInteractor.swift; sourceTree = "<group>"; };
+		FB7083692BD32A200036C4FE /* MockBasketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBasketViewController.swift; sourceTree = "<group>"; };
+		FB70836B2BD32AB30036C4FE /* MockBasketPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBasketPresenter.swift; sourceTree = "<group>"; };
 		FBAD0D4D2BCA9DB600546807 /* BasketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewController.swift; sourceTree = "<group>"; };
 		FBAD0D4F2BCA9DC600546807 /* BasketInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketInteractor.swift; sourceTree = "<group>"; };
 		FBAD0D512BCA9DCE00546807 /* BasketPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketPresenter.swift; sourceTree = "<group>"; };
@@ -274,6 +282,7 @@
 		FB6B7AFA2BC547B800044824 /* GetirFinalCaseTests */ = {
 			isa = PBXGroup;
 			children = (
+				FB7083642BD328CA0036C4FE /* Mock */,
 				FB6B7AFB2BC547B800044824 /* GetirFinalCaseTests.swift */,
 			);
 			path = GetirFinalCaseTests;
@@ -445,6 +454,17 @@
 				FB6E35182BC73707002F2ECD /* ProductCellPresenter.swift */,
 			);
 			path = ProductCell;
+			sourceTree = "<group>";
+		};
+		FB7083642BD328CA0036C4FE /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				FB7083652BD328EB0036C4FE /* MockBasketRouter.swift */,
+				FB7083672BD329740036C4FE /* MockBasketInteractor.swift */,
+				FB7083692BD32A200036C4FE /* MockBasketViewController.swift */,
+				FB70836B2BD32AB30036C4FE /* MockBasketPresenter.swift */,
+			);
+			path = Mock;
 			sourceTree = "<group>";
 		};
 		FBAD0D552BCAA10A00546807 /* Cell */ = {
@@ -670,6 +690,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB70836A2BD32A200036C4FE /* MockBasketViewController.swift in Sources */,
+				FB70836C2BD32AB30036C4FE /* MockBasketPresenter.swift in Sources */,
+				FB7083682BD329740036C4FE /* MockBasketInteractor.swift in Sources */,
+				FB7083662BD328EB0036C4FE /* MockBasketRouter.swift in Sources */,
 				FB6B7AFC2BC547B800044824 /* GetirFinalCaseTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -843,6 +867,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -870,6 +895,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

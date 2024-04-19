@@ -29,11 +29,14 @@ class LoadingView {
         blurView.contentView.addSubview(activityIndicator)
     }
     
-    func startLoading(){
-        UIApplication.shared.windows.first?.addSubview(blurView)
+    func startLoading() {
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+        guard let window = windowScene.windows.first else { return }
 
+        window.addSubview(blurView)
         activityIndicator.startAnimating()
     }
+
     
     func hideLoading() {
         DispatchQueue.main.async {
