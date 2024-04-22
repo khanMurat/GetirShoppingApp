@@ -5,16 +5,22 @@
 //  Created by Murat on 20.04.2024.
 //
 
-import XCTest
+import Foundation
 @testable import GetirFinalCase
 
-final class MockBasketInteractor: XCTestCase,BasketInteractorProtocol {
+final class MockBasketInteractor: BasketInteractorProtocol {
     
     var removeAllProductsCalled = false
+    var isFetchBasketProductsCalled = false
+    var isFetchSuggestedProductsCalled = false
     
-    func fetchBasketProducts() {}
+    func fetchBasketProducts() {
+        isFetchBasketProductsCalled = true
+    }
     
-    func fetchSuggestedProducts() {}
+    func fetchSuggestedProducts() {
+        isFetchSuggestedProductsCalled = true
+    }
     
     func removeAllProductFromBasket() {
         removeAllProductsCalled = true

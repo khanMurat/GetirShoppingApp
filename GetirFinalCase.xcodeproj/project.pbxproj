@@ -321,8 +321,8 @@
 			isa = PBXGroup;
 			children = (
 				FB443BCD2BC973710036E2D9 /* DetailViewController.swift */,
-				FB443BCF2BC9737D0036E2D9 /* DetailPresenter.swift */,
 				FB443BD12BC973870036E2D9 /* DetailInteractor.swift */,
+				FB443BCF2BC9737D0036E2D9 /* DetailPresenter.swift */,
 				FB443BD32BC973910036E2D9 /* DetailRouter.swift */,
 			);
 			path = Detail;
@@ -344,9 +344,9 @@
 			children = (
 				FB504B042BC6BE0000AC1AED /* Cells */,
 				FB6B7B332BC55C0A00044824 /* HomeViewController.swift */,
+				FB6B7B392BC563B500044824 /* HomeInteractor.swift */,
 				FB6B7B352BC55DAC00044824 /* HomePresenter.swift */,
 				FB6B7B372BC5635900044824 /* HomeEntitiy.swift */,
-				FB6B7B392BC563B500044824 /* HomeInteractor.swift */,
 				FB6B7B3B2BC563BB00044824 /* HomeRouter.swift */,
 			);
 			path = Home;

@@ -5,16 +5,25 @@
 //  Created by Murat on 20.04.2024.
 //
 
-import XCTest
+import Foundation
 @testable import GetirFinalCase
 
-final class MockBasketViewController: XCTestCase,BasketViewControllerProtocol {
+final class MockBasketViewController: BasketViewControllerProtocol {
+
+    var totalPrice: Double?
+    var isSetupViewsCalled = false
+    var isReloadDataCalled = false
+    var isShowErrorCalled = false
+    var lastErrorMessage: String?
     
-    var totalPrice : Double?
     
-    func reloadData() {}
+    func reloadData() {
+        isReloadDataCalled = true
+    }
     
-    func setupViews() {}
+    func setupViews() {
+        isSetupViewsCalled = true
+    }
     
     func showLoadingView() {}
     
@@ -32,8 +41,11 @@ final class MockBasketViewController: XCTestCase,BasketViewControllerProtocol {
     
     func checkBasketIsEmpty() {}
     
-    func showError(_ message: String) {}
+    func showError(_ message: String) {
+        isShowErrorCalled = true
+        lastErrorMessage = message
+    }
     
-    
+    func presentAlert() {}
     
 }

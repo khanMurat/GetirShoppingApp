@@ -17,12 +17,13 @@ protocol BasketPresenterProtocol : AnyObject {
     func basketProduct(_ index : Int) -> RealmProduct?
     func removeAllProduct()
     func checkOutProduct()
+    func navigateHome()
     func removeNotifications()
 }
 
 final class BasketPresenter {
     
-    unowned var view : BasketViewController!
+    unowned var view : BasketViewControllerProtocol!
     let router : BasketRouterProtocol!
     let interactor : BasketInteractorProtocol!
     
@@ -30,7 +31,7 @@ final class BasketPresenter {
     var basketProducts : [RealmProduct] = []
     var totalPrice : Double = 0.0
     
-    init(view: BasketViewController, router: BasketRouterProtocol, interactor: BasketInteractorProtocol) {
+    init(view: BasketViewControllerProtocol, router: BasketRouterProtocol, interactor: BasketInteractorProtocol) {
         self.view = view
         self.router = router
         self.interactor = interactor
@@ -64,7 +65,7 @@ extension BasketPresenter : BasketPresenterProtocol {
     
     func checkBasketIsEmpty() {
         if basketProducts.isEmpty {
-            self.router.navigate(.homeView)
+            navigateHome()
         }
     }
     
@@ -84,6 +85,10 @@ extension BasketPresenter : BasketPresenterProtocol {
         interactor.checkOutProducts()
     }
     
+    func navigateHome() {
+        self.router.navigate(.homeView)
+    }
+    
     func removeNotifications() {
         interactor.removeNotifications()
     }
@@ -101,16 +106,6 @@ extension BasketPresenter : BasketPresenterProtocol {
         interactor.setupNotifications()
     }
     
-    private func showOrderCompletionAlert() {
-        self.view.presentCustomAlert(
-            message: "Siparişiniz başarıyla oluşturulmuştur.",
-            yesAction: {
-                self.router.navigate(.homeView)
-            },
-            noButtonHidden: true,
-            yesButtonTitle: "Tamam"
-        )
-    }
 }
 
 extension BasketPresenter : BasketInteractorOutputProtocol {
@@ -141,8 +136,8 @@ extension BasketPresenter : BasketInteractorOutputProtocol {
     
     func checkOutProductsOutput(_ result: Bool) {
         if result{
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                self.showOrderCompletionAlert()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.view.presentAlert()
             }
         }
     }

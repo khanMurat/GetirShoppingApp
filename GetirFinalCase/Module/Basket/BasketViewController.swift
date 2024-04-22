@@ -18,6 +18,7 @@ protocol BasketViewControllerProtocol : AnyObject {
     func setupCheckoutView(_ totalPrice: Double)
     func checkBasketIsEmpty()
     func showError(_ message:String)
+    func presentAlert()
 }
 
 final class BasketViewController : BaseViewController {
@@ -147,7 +148,7 @@ final class BasketViewController : BaseViewController {
 //MARK: - BasketViewControllerProtocol
 
 extension BasketViewController : BasketViewControllerProtocol {
-
+    
     func reloadData() {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
@@ -190,6 +191,15 @@ extension BasketViewController : BasketViewControllerProtocol {
     
     func showError(_ message: String) {
         self.showAlert(title: "Error", message: message)
+    }
+    
+    func presentAlert() {
+        self.presentCustomAlert(
+            message: "Siparişiniz başarıyla oluşturulmuştur.",
+            yesAction: presenter.navigateHome,
+            noButtonHidden: true,
+            yesButtonTitle: "Tamam"
+        )
     }
 }
 
