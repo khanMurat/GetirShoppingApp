@@ -40,11 +40,13 @@ The Getir Shopping App is a streamlined, intuitive shopping application designed
 ## Technical Highlights
 
 - **Language**: Swift
-- **Architecture**: VIPER (preferred for its modular and organized structure)
+- **Architecture**: VIPER is employed as the architectural pattern, establishing a clear separation of concerns. It breaks down the app into distinct layers, each with a single responsibility, enhancing the maintainability and scalability of the codebase.
 - **Design Patterns**: Emphasis on separation of concerns with the use of design patterns.
 - **UI Design**: Follows Figma designs provided, inspired by the Getir app.
 - **Layout**: Implemented using Compositional Layout for a modern and flexible UI.
 - **No Storyboards/Xibs**: UI is coded programmatically for precise control and customization.
+- **Custom Views**: Custom views are utilized to encapsulate the UI elements, promoting reusability and testability. This approach keeps the UI code clean and modular, making it easier to manage and update.
+- - **Notification Manager**: A robust communication mechanism implemented to listen for events across different parts of the app, such as adding or removing items from the cart on various screens. This ensures that all views are updated in real time, providing a seamless and responsive user experience. Utilizing a Notification Manager helps in maintaining a synchronized state throughout the application, especially when the same data is manipulated in multiple views, such as the main page, detail page, and shopping cart.
 
 ## Functional Requirements
 
