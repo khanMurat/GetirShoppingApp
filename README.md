@@ -25,9 +25,9 @@
 - Combine
 - UICollectionViewDiffableDataSource
 
-# Getir Lite App - Simple Shopping Solution
+# Getir Shopping App - Simple Shopping Solution
 
-The Getir Lite App is a streamlined, intuitive shopping application designed to mimic the core functionalities of the popular Getir app, with a focus on simplicity and performance. The app showcases a clean design inspired by Getir's UI/UX, ensuring a familiar and user-friendly experience.
+The Getir Shopping App is a streamlined, intuitive shopping application designed to mimic the core functionalities of the popular Getir app, with a focus on simplicity and performance. The app showcases a clean design inspired by Getir's UI/UX, ensuring a familiar and user-friendly experience.
 
 ## Key Features
 
