@@ -19,6 +19,8 @@
 - ✅ Organized Folder Structure
 - ✅ Following Same Style in Every File
 
+# VIPER ARCHITECTURE
+
 ![VIPER Architecture](VIPER.jpg)
 
 ## Nice to Have
