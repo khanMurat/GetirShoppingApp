@@ -24,3 +24,35 @@
 - Modularity
 - Combine
 - UICollectionViewDiffableDataSource
+
+# Getir Lite App - Simple Shopping Solution
+
+The Getir Lite App is a streamlined, intuitive shopping application designed to mimic the core functionalities of the popular Getir app, with a focus on simplicity and performance. The app showcases a clean design inspired by Getir's UI/UX, ensuring a familiar and user-friendly experience.
+
+## Key Features
+
+- **Product Listing**: Users can view a list of products fetched from a mock API, displayed in both horizontal and vertical scrollable lists. 
+
+- **Product Detail**: Clicking on any product item takes the user to a detailed page where they can see an enlarged image, name, price, and description of the product.
+
+- **Shopping Cart**: Users can add or remove products to/from their cart, view the total amount, and checkout with a success message displaying the total cost.
+
+## Technical Highlights
+
+- **Language**: Swift
+- **Architecture**: VIPER (preferred for its modular and organized structure)
+- **Design Patterns**: Emphasis on separation of concerns with the use of design patterns.
+- **UI Design**: Follows Figma designs provided, inspired by the Getir app.
+- **Layout**: Implemented using Compositional Layout for a modern and flexible UI.
+- **No Storyboards/Xibs**: UI is coded programmatically for precise control and customization.
+
+## Functional Requirements
+
+- The app strictly adheres to the functional requirements as laid out, ensuring proper data display, navigation, cart management, and synchronization after returning from different screens.
+
+## Additional Information
+
+- The project is fully compatible with Xcode 15.0 and is production-ready.
+- Code quality is maintained with clean, maintainable, and well-documented practices.
+- Git is utilized effectively to showcase proper version control practices.
+- A modular approach is adopted where feasible, enhancing readability and maintainability.
