@@ -11,19 +11,27 @@ import Foundation
 final class MockBasketInteractor: BasketInteractorProtocol {
     
     var removeAllProductsCalled = false
+    var removeAllProductsCallCount = 0
+    
     var isFetchBasketProductsCalled = false
+    var fetchBasketProductsCallCount = 0
+    
     var isFetchSuggestedProductsCalled = false
+    var fetchSuggestedProductsCallCount = 0
     
     func fetchBasketProducts() {
         isFetchBasketProductsCalled = true
+        fetchBasketProductsCallCount += 1
     }
     
     func fetchSuggestedProducts() {
         isFetchSuggestedProductsCalled = true
+        fetchSuggestedProductsCallCount += 1
     }
     
     func removeAllProductFromBasket() {
         removeAllProductsCalled = true
+        removeAllProductsCallCount += 1
     }
     
     func checkOutProducts() {}
@@ -33,3 +41,4 @@ final class MockBasketInteractor: BasketInteractorProtocol {
     func removeNotifications() {}
     
 }
+

@@ -13,8 +13,8 @@ protocol DetailPresenterProtocol : AnyObject {
     func removeProductFromBasket()
     func removeNotifications()
     func productCheckForBasket()
-    func tappedBasket()
     func fetchProductCount()
+    func tappedBasket()
 }
 
 final class DetailPresenter {

@@ -14,5 +14,4 @@ final class MockBasketRouter: BasketRouterProtocol {
     func navigate(_ route: BasketRoutes) {
         lastRoute = route
     }
-
 }

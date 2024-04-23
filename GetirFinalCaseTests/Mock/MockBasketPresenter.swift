@@ -34,34 +34,48 @@ final class MockBasketPresenter: XCTestCase {
         
     }
     
+    func testInitialState() {
+        XCTAssertFalse(mockView.isSetupViewsCalled)
+        XCTAssertFalse(mockView.isShowLoadingViewCalled)
+        XCTAssertEqual(mockView.setupViewsCallCount, 0)
+        XCTAssertEqual(mockView.showLoadingViewCallCount, 0)
+        XCTAssertNil(mockView.titleSet)
+    }
+    
+    func testAfterViewDidLoad() {
+        presenter.viewdidLoad()
+        
+        XCTAssertTrue(mockView.isSetupViewsCalled)
+        XCTAssertTrue(mockView.isShowLoadingViewCalled)
+        XCTAssertEqual(mockView.setupViewsCallCount, 1)
+        XCTAssertEqual(mockView.showLoadingViewCallCount, 1)
+        XCTAssertEqual(mockView.titleSet, "Sepetim")
+    }
+    
     func testTotalPriceIsCorrectlyPassedToView() {
-        let mockView = MockBasketViewController()
-        let mockRouter = MockBasketRouter()
-        let mockInteractor = MockBasketInteractor()
-        let presenter = BasketPresenter(view: mockView, router: mockRouter, interactor: mockInteractor)
         
         let testTotalPrice = 100.0
         presenter.fetchBasketProductsTotalPriceOutput(testTotalPrice)
-        
-        // XCTAssert check total price pass correctly and equal with view's total price
-        
         XCTAssertEqual(mockView.totalPrice, testTotalPrice)
     }
     
+    func testFetchBasketProductsIsCalled() {
+        
+        mockInteractor.fetchBasketProducts()
+        XCTAssertTrue(mockInteractor.isFetchBasketProductsCalled)
+        XCTAssertEqual(mockInteractor.fetchBasketProductsCallCount, 1)
+    }
+    
     func testRemoveAllProductsClearsProductList() {
-
-        presenter.removeAllProduct()
         
-        // XCTAssert Check if remove all product
-        
+        mockInteractor.removeAllProductFromBasket()
         XCTAssertTrue(mockInteractor.removeAllProductsCalled)
+        XCTAssertEqual(mockInteractor.removeAllProductsCallCount, 1)
     }
     
     func testNumberOfSectionsReturnsCorrectValue() {
-
-        // XCTAssert check number of sections is equal same number
         
-        XCTAssertEqual(presenter.numberOfSections(), 3)
+        let expectedSection = 2
+        XCTAssertEqual(presenter.numberOfSections(), expectedSection)
     }
-    
 }
