@@ -29,6 +29,11 @@
 - Combine
 - UICollectionViewDiffableDataSource
 
+## Gifs
+
+![GetirShoppingApp](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWo3ZHF6c3E0cmpveXlsNDlncXhuN3VxMmNrNm1mNWl5c2hrbHkxciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/jX0rRaC68sowirY5Nj/giphy.gif),!
+![GetirShoppingApp](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjJ1ejJmYnc4bDZwaDhjcGd2NDRlZGx6anY5b2g0NTlqZzZnYnpueCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/mLLq9IbfzYS96C1BPw/giphy.gif),!
+
 # Getir Shopping App - Simple Shopping Solution
 
 The Getir Shopping App is a streamlined, intuitive shopping application designed to mimic the core functionalities of the popular Getir app, with a focus on simplicity and performance. The app showcases a clean design inspired by Getir's UI/UX, ensuring a familiar and user-friendly experience.
