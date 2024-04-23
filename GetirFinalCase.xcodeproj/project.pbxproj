@@ -26,6 +26,11 @@
 		FB504B0B2BC6CE6700AC1AED /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB504B0A2BC6CE6700AC1AED /* UIImageView.swift */; };
 		FB504B0E2BC6CECB00AC1AED /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = FB504B0D2BC6CECB00AC1AED /* SDWebImage */; };
 		FB504B112BC7259100AC1AED /* ProductRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB504B102BC7259100AC1AED /* ProductRepository.swift */; };
+		FB55B81F2BD7C3AE00291294 /* Products.json in Resources */ = {isa = PBXBuildFile; fileRef = FB55B81E2BD7C3AE00291294 /* Products.json */; };
+		FB55B8222BD7C46F00291294 /* MockHomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB55B8212BD7C46F00291294 /* MockHomeRouter.swift */; };
+		FB55B8242BD7C47900291294 /* MockHomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB55B8232BD7C47900291294 /* MockHomeInteractor.swift */; };
+		FB55B8262BD7C48800291294 /* MockHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB55B8252BD7C48800291294 /* MockHomeViewController.swift */; };
+		FB55B8282BD7C49100291294 /* MockHomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB55B8272BD7C49100291294 /* MockHomePresenter.swift */; };
 		FB5F647F2BC9AEDC004759E1 /* CustomAddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5F647E2BC9AEDC004759E1 /* CustomAddButton.swift */; };
 		FB5F64812BC9B49B004759E1 /* CustomStepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5F64802BC9B49B004759E1 /* CustomStepperView.swift */; };
 		FB5F64832BC9F64A004759E1 /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5F64822BC9F64A004759E1 /* CustomAlertView.swift */; };
@@ -33,7 +38,6 @@
 		FB6B7AE72BC547B600044824 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6B7AE62BC547B600044824 /* SceneDelegate.swift */; };
 		FB6B7AEE2BC547B800044824 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB6B7AED2BC547B800044824 /* Assets.xcassets */; };
 		FB6B7AF12BC547B800044824 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = FB6B7AF02BC547B800044824 /* Base */; };
-		FB6B7AFC2BC547B800044824 /* GetirFinalCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6B7AFB2BC547B800044824 /* GetirFinalCaseTests.swift */; };
 		FB6B7B062BC547B800044824 /* GetirFinalCaseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6B7B052BC547B800044824 /* GetirFinalCaseUITests.swift */; };
 		FB6B7B082BC547B800044824 /* GetirFinalCaseUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6B7B072BC547B800044824 /* GetirFinalCaseUITestsLaunchTests.swift */; };
 		FB6B7B1F2BC54B7600044824 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6B7B1E2BC54B7600044824 /* BaseViewController.swift */; };
@@ -116,6 +120,11 @@
 		FB504B082BC6C5FB00AC1AED /* SuggestedProductCellPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestedProductCellPresenter.swift; sourceTree = "<group>"; };
 		FB504B0A2BC6CE6700AC1AED /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		FB504B102BC7259100AC1AED /* ProductRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRepository.swift; sourceTree = "<group>"; };
+		FB55B81E2BD7C3AE00291294 /* Products.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Products.json; sourceTree = "<group>"; };
+		FB55B8212BD7C46F00291294 /* MockHomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHomeRouter.swift; sourceTree = "<group>"; };
+		FB55B8232BD7C47900291294 /* MockHomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHomeInteractor.swift; sourceTree = "<group>"; };
+		FB55B8252BD7C48800291294 /* MockHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHomeViewController.swift; sourceTree = "<group>"; };
+		FB55B8272BD7C49100291294 /* MockHomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHomePresenter.swift; sourceTree = "<group>"; };
 		FB5F647E2BC9AEDC004759E1 /* CustomAddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAddButton.swift; sourceTree = "<group>"; };
 		FB5F64802BC9B49B004759E1 /* CustomStepperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStepperView.swift; sourceTree = "<group>"; };
 		FB5F64822BC9F64A004759E1 /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
@@ -126,7 +135,6 @@
 		FB6B7AF02BC547B800044824 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FB6B7AF22BC547B800044824 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FB6B7AF72BC547B800044824 /* GetirFinalCaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GetirFinalCaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FB6B7AFB2BC547B800044824 /* GetirFinalCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetirFinalCaseTests.swift; sourceTree = "<group>"; };
 		FB6B7B012BC547B800044824 /* GetirFinalCaseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GetirFinalCaseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB6B7B052BC547B800044824 /* GetirFinalCaseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetirFinalCaseUITests.swift; sourceTree = "<group>"; };
 		FB6B7B072BC547B800044824 /* GetirFinalCaseUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetirFinalCaseUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -247,6 +255,18 @@
 			path = ProductRepository;
 			sourceTree = "<group>";
 		};
+		FB55B8202BD7C41800291294 /* MockHome */ = {
+			isa = PBXGroup;
+			children = (
+				FB55B81E2BD7C3AE00291294 /* Products.json */,
+				FB55B8212BD7C46F00291294 /* MockHomeRouter.swift */,
+				FB55B8232BD7C47900291294 /* MockHomeInteractor.swift */,
+				FB55B8252BD7C48800291294 /* MockHomeViewController.swift */,
+				FB55B8272BD7C49100291294 /* MockHomePresenter.swift */,
+			);
+			path = MockHome;
+			sourceTree = "<group>";
+		};
 		FB6B7AD82BC547B600044824 = {
 			isa = PBXGroup;
 			children = (
@@ -282,8 +302,8 @@
 		FB6B7AFA2BC547B800044824 /* GetirFinalCaseTests */ = {
 			isa = PBXGroup;
 			children = (
-				FB7083642BD328CA0036C4FE /* Mock */,
-				FB6B7AFB2BC547B800044824 /* GetirFinalCaseTests.swift */,
+				FB55B8202BD7C41800291294 /* MockHome */,
+				FB7083642BD328CA0036C4FE /* MockBasket */,
 			);
 			path = GetirFinalCaseTests;
 			sourceTree = "<group>";
@@ -456,7 +476,7 @@
 			path = ProductCell;
 			sourceTree = "<group>";
 		};
-		FB7083642BD328CA0036C4FE /* Mock */ = {
+		FB7083642BD328CA0036C4FE /* MockBasket */ = {
 			isa = PBXGroup;
 			children = (
 				FB7083652BD328EB0036C4FE /* MockBasketRouter.swift */,
@@ -464,7 +484,7 @@
 				FB7083692BD32A200036C4FE /* MockBasketViewController.swift */,
 				FB70836B2BD32AB30036C4FE /* MockBasketPresenter.swift */,
 			);
-			path = Mock;
+			path = MockBasket;
 			sourceTree = "<group>";
 		};
 		FBAD0D552BCAA10A00546807 /* Cell */ = {
@@ -615,6 +635,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB55B81F2BD7C3AE00291294 /* Products.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -692,9 +713,12 @@
 			files = (
 				FB70836A2BD32A200036C4FE /* MockBasketViewController.swift in Sources */,
 				FB70836C2BD32AB30036C4FE /* MockBasketPresenter.swift in Sources */,
+				FB55B8262BD7C48800291294 /* MockHomeViewController.swift in Sources */,
+				FB55B8222BD7C46F00291294 /* MockHomeRouter.swift in Sources */,
 				FB7083682BD329740036C4FE /* MockBasketInteractor.swift in Sources */,
+				FB55B8282BD7C49100291294 /* MockHomePresenter.swift in Sources */,
 				FB7083662BD328EB0036C4FE /* MockBasketRouter.swift in Sources */,
-				FB6B7AFC2BC547B800044824 /* GetirFinalCaseTests.swift in Sources */,
+				FB55B8242BD7C47900291294 /* MockHomeInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
