@@ -31,11 +31,12 @@
 
 ## Gifs
 
-![GetirShoppingApp](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWo3ZHF6c3E0cmpveXlsNDlncXhuN3VxMmNrNm1mNWl5c2hrbHkxciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/jX0rRaC68sowirY5Nj/giphy.gif),
-![GetirShoppingApp](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYmtqdm5hNGFndDBrNWlkaThlMG56ODFlODlwY2ZuM29tanJsbGx5OSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/DBP1y6D9X3FKAD2YiW/giphy.gif),
-![GetirShoppingApp](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjJ1ejJmYnc4bDZwaDhjcGd2NDRlZGx6anY5b2g0NTlqZzZnYnpueCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/mLLq9IbfzYS96C1BPw/giphy.gif),
-![GetirShoppingApp](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2lkMnlsOXdtcXhubzNybHl5YjV2NWt1dDh0bXluMGd0Y2tkMWo2ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/2v6uhgT2i0NWXIb0M0/giphy.gif),
-
+![GetirShoppingApp](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWo3ZHF6c3E0cmpveXlsNDlncXhuN3VxMmNrNm1mNWl5c2hrbHkxciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/jX0rRaC68sowirY5Nj/giphy.gif)
+![GetirShoppingApp](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYmtqdm5hNGFndDBrNWlkaThlMG56ODFlODlwY2ZuM29tanJsbGx5OSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/DBP1y6D9X3FKAD2YiW/giphy.gif)
+![GetirShoppingApp](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjJ1ejJmYnc4bDZwaDhjcGd2NDRlZGx6anY5b2g0NTlqZzZnYnpueCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/mLLq9IbfzYS96C1BPw/giphy.gif)
+![GetirShoppingApp](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2lkMnlsOXdtcXhubzNybHl5YjV2NWt1dDh0bXluMGd0Y2tkMWo2ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/2v6uhgT2i0NWXIb0M0/giphy.gif)
+![GetirShoppingApp](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZXZuM3BpdHZwdW9qbXphaGRkNDVnazlzamo5cGR1eTBhdzNxdnVwdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/QGCnReRjOYtJfI1zJk/giphy.gif)
+![GetirShoppingApp](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdXR4ZWt0d3FrbjUzem5qd3k3ZDhuOGluenplcDk1bGx2MWZocXMzaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/M0w2AMMUIWmT9FM6nD/giphy.gif)
 
 # Getir Shopping App - Simple Shopping Solution
 
