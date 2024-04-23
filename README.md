@@ -31,8 +31,11 @@
 
 ## Gifs
 
-![GetirShoppingApp](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWo3ZHF6c3E0cmpveXlsNDlncXhuN3VxMmNrNm1mNWl5c2hrbHkxciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/jX0rRaC68sowirY5Nj/giphy.gif),!
-![GetirShoppingApp](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjJ1ejJmYnc4bDZwaDhjcGd2NDRlZGx6anY5b2g0NTlqZzZnYnpueCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/mLLq9IbfzYS96C1BPw/giphy.gif),!
+![GetirShoppingApp](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWo3ZHF6c3E0cmpveXlsNDlncXhuN3VxMmNrNm1mNWl5c2hrbHkxciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/jX0rRaC68sowirY5Nj/giphy.gif),
+![GetirShoppingApp](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYmtqdm5hNGFndDBrNWlkaThlMG56ODFlODlwY2ZuM29tanJsbGx5OSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/DBP1y6D9X3FKAD2YiW/giphy.gif),
+![GetirShoppingApp](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjJ1ejJmYnc4bDZwaDhjcGd2NDRlZGx6anY5b2g0NTlqZzZnYnpueCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/mLLq9IbfzYS96C1BPw/giphy.gif),
+![GetirShoppingApp](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2lkMnlsOXdtcXhubzNybHl5YjV2NWt1dDh0bXluMGd0Y2tkMWo2ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/2v6uhgT2i0NWXIb0M0/giphy.gif),
+
 
 # Getir Shopping App - Simple Shopping Solution
 
